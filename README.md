@@ -2,10 +2,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:4f46e5,100:06b6d4&height=180&section=header&text=Hi, I'm ho8566z&fontSize=40&fontColor=ffffff" />
 
 ## 👋 About Me
-한 줄 소개를 적습니다. (예: 꾸준히 기록하고 개선하는 개발자)
+배움을 멈추지 않는 개발자 이윤호입니다.
 
 - 📧 Email: ho8566z@gmail.com
-- 📒 Portfolio: [Notion 링크](https://www.notion.so/)
+- 📒 Portfolio: [[Notion 링크](https://www.notion.so/)](https://app.notion.com/p/5bf00b1cd77d83e6abff018c339379b6?source=copy_link)
 
 ## 📊 GitHub Stats
 <img height="160" src="https://github-readme-stats.vercel.app/api?username=ho8566z&show_icons=true&theme=default" />
