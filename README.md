@@ -21,13 +21,18 @@
 
 - **Overview**: 드론 관제를 통한 유동인구 분석 시스템
 
-- **Skill Stack**: Java · Spring Boot · Spring Data JPA · Python · Flask · MySQL · JavaScript · WSL · Docker · OpenCV · YOLOv8m
-
 - **Stack**  
   <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
   <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+  <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
+  <img src="images/badge_python.png" height="20" alt="Python" />&nbsp;
+  <img src="images/badge_flask.png" height="20" alt="Flask" />&nbsp;
   <img src="images/badge_mysql.png" height="20" alt="MySQL" />&nbsp;
+  <img src="images/badge_javascript.png" height="20" alt="JavaScript" />&nbsp;
+  <img src="images/badge_wsl.png" height="20" alt="WSL" />&nbsp;
   <img src="images/badge_docker.png" height="20" alt="Docker" />&nbsp;
+  <img src="images/badge_opencv.png" height="20" alt="OpenCV" />&nbsp;
+  <img src="images/badge_yolov8m.png" height="20" alt="YOLOv8m" />&nbsp;
 
 - **My Role**
 
@@ -74,10 +79,13 @@
 
 - **Overview**: 동영상 분석 기반 실시간 신원 탐지 시스템
 
-- **Skill Stack**: Python · Flask · JavaScript · OpenCV · YOLOv8n · InsightFace
-
 - **Stack**  
   <img src="images/badge_python.png" height="20" alt="Python" />&nbsp;
+  <img src="images/badge_flask.png" height="20" alt="Flask" />&nbsp;
+  <img src="images/badge_javascript.png" height="20" alt="JavaScript" />&nbsp;
+  <img src="images/badge_opencv.png" height="20" alt="OpenCV" />&nbsp;
+  <img src="images/badge_yolov8n.png" height="20" alt="YOLOv8n" />&nbsp;
+  <img src="images/badge_insightface.png" height="20" alt="InsightFace" />&nbsp;
 
 - **My Role**
 
@@ -97,13 +105,23 @@
 **Language**  
 <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
 <img src="images/badge_python.png" height="20" alt="Python" />&nbsp;
+<img src="images/badge_javascript.png" height="20" alt="JavaScript" />&nbsp;
 
 **Backend**  
 <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+<img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
+<img src="images/badge_flask.png" height="20" alt="Flask" />&nbsp;
+
+**AI · Vision**  
+<img src="images/badge_opencv.png" height="20" alt="OpenCV" />&nbsp;
+<img src="images/badge_yolov8m.png" height="20" alt="YOLOv8m" />&nbsp;
+<img src="images/badge_yolov8n.png" height="20" alt="YOLOv8n" />&nbsp;
+<img src="images/badge_insightface.png" height="20" alt="InsightFace" />&nbsp;
 
 **DB · Infra**  
 <img src="images/badge_mysql.png" height="20" alt="MySQL" />&nbsp;
 <img src="images/badge_docker.png" height="20" alt="Docker" />&nbsp;
+<img src="images/badge_wsl.png" height="20" alt="WSL" />&nbsp;
 
 **Tools**  
 <img src="images/badge_git.png" height="20" alt="Git" />&nbsp;
