@@ -17,9 +17,11 @@
 
 ## 📌 Projects
 
-### 🖥 white-eyes — 2차 프로젝트 (Spring Boot 4.1 · Spring Security · Spring Data JPA · Flyway · Spring Session JDBC · Gradle 멀티모듈 · Flask · Chart.js · Leaflet)
+### 🖥 2차 프로젝트 — white-eyes
 
 - **Overview**: 드론 관제를 통한 유동인구 분석 시스템
+
+- **Skill Stack**: Java · Spring Boot · Spring Security · Spring Data JPA · Python · Flask · MySQL · JavaScript · WSL · Docker · OpenCV · YOLOv8n
 
 - **Stack**  
   <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
@@ -68,9 +70,11 @@
 
 ---
 
-### 🖥 obsidian-shield — 1차 프로젝트 (Flask · OpenCV · Ultralytics YOLO · InsightFace)
+### 🖥 1차 프로젝트 — obsidian-shield
 
 - **Overview**: 동영상 분석 기반 실시간 신원 탐지 시스템
+
+- **Skill Stack**: Python · Flask · JavaScript · OpenCV · YOLOv8n · InsightFace
 
 - **Stack**  
   <img src="images/badge_python.png" height="20" alt="Python" />&nbsp;
