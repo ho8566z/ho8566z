@@ -1,5 +1,5 @@
 <!-- 배너 -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:4f46e5,100:06b6d4&height=180&section=header&text=Hi, I'm ho8566z&fontSize=40&fontColor=ffffff" />
+<img src="images/01_header_banner.png" width="100%" alt="header" />
 
 ## 👋 About Me
 배움을 멈추지 않는 개발자 이윤호입니다.
@@ -15,7 +15,7 @@
 
 ### 1. white-eyes-spring (통계 서버 앱)
 - **Overview**: 프로젝트 한 줄 설명
-- **Stack**: ![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=openjdk&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat&logo=springboot&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
+- **Stack**: <img src="images/badge_java.png" height="20" alt="Java" /> <img src="images/badge_springboot.png" height="20" alt="Spring Boot" /> <img src="images/badge_mysql.png" height="20" alt="MySQL" />
 - **My Role**
   - 맡은 기능 1
   - 맡은 기능 2
@@ -23,13 +23,13 @@
 
 ### 2. obsidian-shield
 - **Overview**: ...
-- **Stack**: ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+- **Stack**: <img src="images/badge_python.png" height="20" alt="Python" />
 - **Repo**: [Kanabig/obsidian-shield](https://github.com/Kanabig/obsidian-shield)
 
 ## 🛠 Tech Stack
-**Language** ![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=openjdk&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+**Language** <img src="images/badge_java.png" height="20" alt="Java" /> <img src="images/badge_python.png" height="20" alt="Python" />
 
-**Tools** ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)
+**Tools** <img src="images/badge_git.png" height="20" alt="Git" /> <img src="images/badge_github.png" height="20" alt="GitHub" />
 
 <!-- 푸터 -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:4f46e5,100:06b6d4&height=100&section=footer" />
+<img src="images/02_footer_banner.png" width="100%" alt="footer" />
