@@ -24,6 +24,7 @@
 - **Stack**  
   <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
   <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+  <img src="images/badge_springsecurity.png" height="20" alt="Spring Security" />&nbsp;
   <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
   <img src="images/badge_python.png" height="20" alt="Python" />&nbsp;
   <img src="images/badge_flask.png" height="20" alt="Flask" />&nbsp;
@@ -109,6 +110,7 @@
 
 **Backend**  
 <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+<img src="images/badge_springsecurity.png" height="20" alt="Spring Security" />&nbsp;
 <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
 <img src="images/badge_flask.png" height="20" alt="Flask" />&nbsp;
 
