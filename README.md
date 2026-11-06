@@ -21,7 +21,7 @@
 
 - **Overview**: 드론 관제를 통한 유동인구 분석 시스템
 
-- **Skill Stack**: Java · Spring Boot · Spring Security · Spring Data JPA · Python · Flask · MySQL · JavaScript · WSL · Docker · OpenCV · YOLOv8n
+- **Skill Stack**: Java · Spring Boot · Spring Data JPA · Python · Flask · MySQL · JavaScript · WSL · Docker · OpenCV · YOLOv8m
 
 - **Stack**  
   <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
