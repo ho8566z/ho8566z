@@ -32,7 +32,7 @@
   <img src="images/badge_wsl.png" height="20" alt="WSL" />&nbsp;
   <img src="images/badge_docker.png" height="20" alt="Docker" />&nbsp;
   <img src="images/badge_opencv.png" height="20" alt="OpenCV" />&nbsp;
-  <img src="images/badge_yolov8m.png" height="20" alt="YOLOv8m" />&nbsp;
+  <img src="images/badge_yolov8n.png" height="20" alt="YOLOv8n" />&nbsp;
 
 - **My Role**
 
@@ -114,7 +114,6 @@
 
 **AI · Vision**  
 <img src="images/badge_opencv.png" height="20" alt="OpenCV" />&nbsp;
-<img src="images/badge_yolov8m.png" height="20" alt="YOLOv8m" />&nbsp;
 <img src="images/badge_yolov8n.png" height="20" alt="YOLOv8n" />&nbsp;
 <img src="images/badge_insightface.png" height="20" alt="InsightFace" />&nbsp;
 
