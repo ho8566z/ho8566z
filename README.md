@@ -17,7 +17,7 @@
 
 ## 📌 Projects
 
-### 🖥 white-eyes — 2차 프로젝트 (Spring Boot + Thymeleaf)
+### 🖥 white-eyes — 2차 프로젝트 (Spring Boot 4.1 · Spring Security · Spring Data JPA · Flyway · Spring Session JDBC · Gradle 멀티모듈 · Flask · Chart.js · Leaflet)
 
 - **Overview**: 드론 관제를 통한 유동인구 분석 시스템
 
@@ -68,7 +68,7 @@
 
 ---
 
-### 🖥 obsidian-shield — 1차 프로젝트 (Flask)
+### 🖥 obsidian-shield — 1차 프로젝트 (Flask · OpenCV · Ultralytics YOLO · InsightFace)
 
 - **Overview**: 동영상 분석 기반 실시간 신원 탐지 시스템
 
