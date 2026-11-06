@@ -8,8 +8,8 @@
 - 📒 Portfolio: [Notion 링크](https://app.notion.com/p/5bf00b1cd77d83e6abff018c339379b6?source=copy_link)
 
 ## 📊 GitHub Stats
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=ho8566z&show_icons=true&theme=default" />
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ho8566z&layout=compact" />
+<img height="160" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=ho8566z&theme=tokyonight" />
+<img height="160" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=ho8566z&theme=tokyonight" />
 
 ## 🚀 Projects
 
