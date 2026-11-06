@@ -1,4 +1,3 @@
-<!-- 배너 -->
 <img src="images/01_header_banner.png" width="100%" alt="header" />
 
 ## 👋 About Me
@@ -15,17 +14,23 @@
 
 ## 🚀 Projects
 
-### 1. white-eyes-spring (통계 서버 앱)
-- **Overview**: 프로젝트 한 줄 설명
+### 2차 프로젝트 - white-eyes
+- **Overview**: 드론 관제를 통한 유동인구 분석 시스템
 - **Stack**: <img src="images/badge_java.png" height="20" alt="Java" /> <img src="images/badge_springboot.png" height="20" alt="Spring Boot" /> <img src="images/badge_mysql.png" height="20" alt="MySQL" />
 - **My Role**
-  - 맡은 기능 1
-  - 맡은 기능 2
-- **Repo**: [white-eyes1/white-eyes-spring](https://github.com/white-eyes1/white-eyes-spring)
+  - 혼잡·급증 이벤트 판정과 캠 이상 감지 로직 구현
+  - 이벤트 목록·상세 조회, 처리 상태 변경, 발생 시점 영상 보기 구현
+  - 관리자 알림 스트림(헤더 배지·토스트)과 작업 기록 조회 구현
+  - 관리자 계정 관리(비활성화, 강제 로그아웃, 비밀번호 재설정)와 로그인·권한 검사 구현
+  - 이벤트·통계 엑셀 내려받기 구현과 개선, 변경 사항을 명세 문서(docs)에 반영
+- **Repo**: [white-eyes1/white-eyes-spring](https://github.com/white-eyes1/white-eyes-spring) · [white-eyes1/white-eyes-docs](https://github.com/white-eyes1/white-eyes-docs)
 
-### 2. obsidian-shield
-- **Overview**: ...
+### 1차 프로젝트 - obsidian-shield
+- **Overview**: 동영상 분석 기반 실시간 신원 탐지 시스템
 - **Stack**: <img src="images/badge_python.png" height="20" alt="Python" />
+- **My Role**
+  - 사용자별 로그 조회·필터 기능과 이벤트 이미지 표시 구현
+  - 로그 알림 기능 구현
 - **Repo**: [Kanabig/obsidian-shield](https://github.com/Kanabig/obsidian-shield)
 
 ## 🛠 Tech Stack
@@ -33,5 +38,4 @@
 
 **Tools** <img src="images/badge_git.png" height="20" alt="Git" /> <img src="images/badge_github.png" height="20" alt="GitHub" />
 
-<!-- 푸터 -->
 <img src="images/02_footer_banner.png" width="100%" alt="footer" />
