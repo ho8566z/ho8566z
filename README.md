@@ -17,6 +17,45 @@
 
 ## 📌 Projects
 
+### 🖥 개인 프로젝트 — CALENDAR BOT
+
+- **Overview**: 일정을 기록하고, 다음 주 일정을 매주 일요일 21:00에 텔레그램으로 받아보는 개인 일정 관리 웹 서비스
+
+- **Stack**  
+  <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
+  <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+  <img src="images/badge_springsecurity.png" height="20" alt="Spring Security" />&nbsp;
+  <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
+  <img src="images/badge_mybatis.png" height="20" alt="MyBatis" />&nbsp;
+  <img src="images/badge_mysql.png" height="20" alt="MySQL" />&nbsp;
+  <img src="images/badge_javascript.png" height="20" alt="JavaScript" />&nbsp;
+
+- **My Role** (1인 개발: 기획 · 설계 · 구현 · 테스트 · 문서화)
+
+  #### 📅 일정 관리
+  - **월간 달력 · 일정 CRUD**: 일정 등록·수정·삭제, 시작 시간(HH:mm), 이미지 첨부(선택)  
+  - **검색 · 통계**: 제목·내용 검색과 요일별 월간 통계를 MyBatis 동적 쿼리로 구현, 쓰기·단순 조회는 Spring Data JPA 사용  
+
+  #### 🤖 주간 브리핑(텔레그램)
+  - **계정 연동**: 연동 코드를 발급해 텔레그램 봇과 계정을 연결(롱 폴링), 코드 만료·재사용 방지  
+  - **자동 발송**: 스케줄러가 일요일 21:00에 다음 주(월~일) 일정을 날짜순으로 전송, '지금 보내기'(10초 간격 제한)와 수신 켜기/끄기  
+
+  #### 🔐 회원 · 보안
+  - **가입 승인제**: 가입 후 관리자가 승인해야 사용 가능(PRE_USER → USER), 관리자 사용자 목록 검색·승인  
+  - **로그인 시도 제한**: 같은 아이디·IP에서 연속 5회 실패하면 10분 잠금  
+  - **소유자 검증 · 업로드 검사**: 본인 일정만 접근(타인 일정은 404), 이미지가 아닌 파일 업로드 거부  
+
+  #### 📱 화면
+  - **모바일 대응**: 768px 이하에서 접는 메뉴, 달력 칸 일정 개수 표시와 날짜별 목록, 전체 화면 모달  
+
+  #### ✅ 테스트 · 문서화
+  - **테스트**: JUnit 5·MockMvc로 318개 작성, 실제 MySQL로 가입→승인→로그인→일정→검색→통계→브리핑 흐름 확인  
+  - **문서**: README, 요구사항·기능 명세 엑셀, 발표 자료(PPT) 작성  
+
+👉 [프로젝트 Repo](https://github.com/ho8566z/personal_project) · [문서 Repo](https://github.com/ho8566z/persnal_word)
+
+---
+
 ### 🖥 2차 프로젝트 — white-eyes
 
 - **Overview**: 드론 관제를 통한 유동인구 분석 시스템
@@ -138,6 +177,7 @@
 <img src="images/badge_springsecurity.png" height="20" alt="Spring Security" />&nbsp;
 <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
 <img src="images/badge_flask.png" height="20" alt="Flask" />&nbsp;
+<img src="images/badge_mybatis.png" height="20" alt="MyBatis" />&nbsp;
 
 **AI · Vision**  
 <img src="images/badge_opencv.png" height="20" alt="OpenCV" />&nbsp;
