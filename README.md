@@ -1,10 +1,10 @@
 <img src="images/01_header_banner.png" width="100%" alt="header" />
 
 <br>
-<div align='center'>💻 배움을 멈추지 않는 개발자 이윤호입니다.</div>
+<div align='center'>💻 <h2>배움을 멈추지 않는 개발자 이윤호입니다.</h2></div>
 <br>
-<div align='center'> ✉ Email : <a href="mailto:ho8566z@gmail.com">ho8566z@gmail.com</a></div>
-<div align='center'> 🔗 Notion : <a href="https://app.notion.com/p/5bf00b1cd77d83e6abff018c339379b6?source=copy_link">노션 포트폴리오</a></div>
+<div align='center'> ✉ <h5>Email : <a href="mailto:ho8566z@gmail.com">ho8566z@gmail.com</a></h5>h5></div>
+<div align='center'> 🔗 <h5>Notion : <a href="https://app.notion.com/p/5bf00b1cd77d83e6abff018c339379b6?source=copy_link">노션 포트폴리오</a></h5>h5></div>
 <br>
 <br>
 
