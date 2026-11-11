@@ -126,7 +126,91 @@
 
 ---
 
-### 🖥 개인 프로젝트 — CALENDAR BOT
+### 🖥 3차 개인 프로젝트 — job-feed
+
+- **Overview**: 고용24 공채속보에서 개발·IT 채용공고를 주기적으로 수집해 노션 DB로 전달하는 채용공고 알림 서비스
+
+- **Stack**  
+  <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
+  <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+  <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
+  <img src="images/badge_mysql.png" height="20" alt="MySQL" />&nbsp;
+  <img src="images/badge_notion.png" height="20" alt="Notion" />&nbsp;  
+  H2 · 고용24 OPEN-API · Notion API
+
+- **My Role** (1인 개발: 기획 · 설계 · 구현 · 테스트 · 문서화)
+
+  #### 📥 공고 수집
+  - **고용24 연동**: 공채속보 OPEN-API를 호출해 응답(XML)을 정규화, 응답 바이트의 XML 선언 인코딩으로 해석해 한글 깨짐 수정  
+  - **키워드 · 제외어 필터**: 개발·IT 키워드 10개로 조회해 합치고, 제목에 제외어 7개가 있으면 제외(설정으로 변경 가능)  
+  - **중복 제거 · 저장**: (소스, 공고 ID) 기준으로 처음 보는 공고만 저장, 수집 시각은 서버 시간대와 무관하게 KST로 기록  
+
+  #### 📤 노션 전송
+  - **전송 대기열**: 새 공고마다 전송 기록(send_log)을 PENDING으로 만들고 오래된 순으로 10건씩, 건 사이 400ms 간격으로 노션 페이지 생성  
+  - **재시도 · 속도 제한 처리**: 실패하면 횟수를 올려 3회째에 FAILED, 429·401·403은 횟수를 올리지 않고 그 실행을 중단  
+  - **알림**: 노션 DB 자동화로 새 공고가 들어오면 푸시 알림 수신(앱은 페이지만 생성)  
+
+  #### ⏰ 스케줄링 · 운영
+  - **스케줄러**: 수집 1시간·전송 1분 주기, 주기·배치 크기·간격을 설정값으로 분리하고 스케줄러를 끌 수 있게 구성  
+  - **내부 API**: 수동 수집 실행과 전송 상태별 건수·목록 조회(127.0.0.1에서만 접근)  
+  - **실행 프로필**: 개발용 H2 메모리, 재시작해도 데이터가 남는 H2 파일, MySQL 3종  
+  - **비밀값 관리**: API 키·노션 토큰·DB 계정은 환경변수로만 받고, 없으면 해당 기능만 건너뜀  
+
+  #### ✅ 테스트
+  - **자동 테스트**: 수집→저장→전송→재시도 통합 테스트와 실패 주입 시나리오 포함 64개(62 통과·2 건너뜀, 실패 0)  
+  - **실연동 확인**: 열린 공채 238건 중 필터 후 14건을 노션에 14/14 전송하고 알림 수신  
+
+  #### 📄 문서화
+  - **명세서 · 다이어그램**: 14시트 명세서(엑셀)와 ERD·흐름도, 29장 발표 자료(PPT) 작성  
+  - **개발 방식**: main ← dev ← feature/* 브랜치로 기능마다 병합, README에 알려진 한계(지역 정보 없음·제목 키워드 오탐 등)를 명시  
+
+👉 [프로젝트 Repo](https://github.com/ho8566z/job-feed) · [문서 Repo](https://github.com/ho8566z/job-feed_word)
+
+---
+
+### 🖥 2차 개인 프로젝트 — tube-filter
+
+- **Overview**: YouTube 기본 검색에 없는 조건(정확한 길이, 조회수·구독자 범위, 구독자 대비 조회수 %, 업로드 요일·시간대 등)으로 영상을 걸러 주는 정밀 필터 검색 서비스
+
+- **Stack**  
+  <img src="images/badge_python.png" height="20" alt="Python" />&nbsp;
+  <img src="images/badge_uv.png" height="20" alt="uv" />&nbsp;
+  <img src="images/badge_javascript.png" height="20" alt="JavaScript" />&nbsp;  
+  FastAPI · SQLAlchemy · Alembic · SQLite · Jinja2 · Chart.js · YouTube Data API v3 · pytest
+
+- **My Role** (1인 개발: 기획 · 설계 · 구현 · 테스트 · 문서화)
+
+  #### 🔍 검색 파이프라인
+  - **조건 검증 → 후보 수집 → 상세 조회**: 입력 조건을 검증·정규화하고 search.list로 후보를 모은 뒤 영상 상세를 조회  
+  - **영상 · 채널 필터**: 길이·수치 범위·비율·태그·키워드·카테고리·언어·업로드 요일/시간대·쇼츠 추정과 구독자 규모·구독자 대비 조회수·업로드 빈도·개설일 조건을 순수 함수로 구현하고 경계값 테스트 작성  
+  - **정렬 · 페이지 · 단계별 집계**: 파생 지표 계산, 결과 정렬·페이지, 단계마다 몇 건이 남았는지 보여 주는 필터 통과 현황  
+
+  #### 📈 쿼터 · 캐시
+  - **쿼터 관리**: API 호출마다 사용 units를 기록하고 검색 전에 예상 비용을 견적, 소프트 상한(9,000) 초과 시 차단  
+  - **캐시**: 검색 결과·영상·채널 통계 캐시와 28일 지난 데이터 정리 작업  
+
+  #### 🔐 회원 · 보안
+  - **회원 · 세션**: 가입·로그인·로그아웃·비밀번호 변경·탈퇴(개인 데이터 즉시 삭제), 세션과 CSRF 방어  
+  - **이용 제한**: 회원별 이용 횟수와 요청 속도 제한  
+
+  #### ⭐ 개인화 · 분석
+  - **프리셋 · 즐겨찾기 · 검색 기록**: 조건 저장·불러오기, 영상·채널 즐겨찾기, 기록 조회·삭제  
+  - **분석 · 시각화**: 결과 요약, 산점도, 업로드 요일×시간대 히트맵(Chart.js), 채널 상세·업로드 패턴, CSV 내보내기  
+
+  #### 🎨 화면
+  - **검색 · 개인 화면**: Jinja2와 바닐라 JS로 검색 화면, 재생 모달, 채널 상세, 내 정보 구현, 모바일 폭(360px) 확인  
+  - **정책 고지**: YouTube 정책 준수 체크와 이용 약관·정책 페이지  
+
+  #### ✅ 테스트 · 문서화
+  - **테스트**: mock 어댑터 기반 pytest 556개와 ruff 통과, 더미 키로 서버 기동·화면·오류 상태를 실제 Chrome에서 확인  
+  - **문서**: 명세서 15종(엑셀 포함), 단계별 구현 기록, 구현 반영 사항, 트러블슈팅 작성  
+  - **한계 명시**: YouTube API 키를 발급하지 못해 실제 응답 검색 결과·응답 시간은 확인하지 못했음을 README에 표로 정리  
+
+👉 [프로젝트 Repo](https://github.com/ho8566z/tube-filter) · [문서 Repo](https://github.com/ho8566z/tube-filter_word)
+
+---
+
+### 🖥 1차 개인 프로젝트 — CALENDAR BOT
 
 - **Overview**: 일정을 기록하고, 다음 주 일정을 매주 일요일 21:00에 텔레그램으로 받아보는 개인 일정 관리 웹 서비스
 
@@ -161,7 +245,7 @@
   - **테스트**: JUnit 5·MockMvc로 318개 작성, 실제 MySQL로 가입→승인→로그인→일정→검색→통계→브리핑 흐름 확인  
   - **문서**: README, 요구사항·기능 명세 엑셀, 발표 자료(PPT) 작성  
 
-👉 [프로젝트 Repo](https://github.com/ho8566z/personal_project) · [문서 Repo](https://github.com/ho8566z/persnal_word)
+👉 [프로젝트 Repo](https://github.com/ho8566z/calendar-bot) · [문서 Repo](https://github.com/ho8566z/calendar-bot_word)
 
 ---
 
@@ -193,6 +277,7 @@
 <img src="images/badge_git.png" height="20" alt="Git" />&nbsp;
 <img src="images/badge_github.png" height="20" alt="GitHub" />&nbsp;
 <img src="images/badge_notion.png" height="20" alt="Notion" />&nbsp;
+<img src="images/badge_uv.png" height="20" alt="uv" />&nbsp;
 
 <br>
 
