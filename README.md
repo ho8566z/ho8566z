@@ -83,7 +83,7 @@
   #### ✅ 테스트
   - **기능별 테스트 작성**: 오류 응답, 로그인, 권한 검사, 작업 기록, 엑셀 등 구현한 기능마다 검수 기준 테스트를 함께 작성  
 
-👉 [프로젝트 코드 Repo](https://github.com/white-eyes1/white-eyes-spring) · [프로젝트 분석 Repo](https://github.com/white-eyes1/white-eyes-flask) · [프로젝트 소개 Repo](https://github.com/white-eyes1/white-eyes-introduce) · [문서 Repo](https://github.com/white-eyes1/white-eyes-docs)
+👉 [프로젝트 소개 Repo](https://github.com/white-eyes1/white-eyes-introduce) · [프로젝트 코드 Repo](https://github.com/white-eyes1/white-eyes-spring) · [프로젝트 분석 Repo](https://github.com/white-eyes1/white-eyes-flask) · [문서 Repo](https://github.com/white-eyes1/white-eyes-docs)
 
 ---
 
