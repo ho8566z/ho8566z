@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="56" viewBox="0 0 300 56" role="img" aria-label="노션 포트폴리오 보기">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f6f9"/>
+      <stop offset="1" stop-color="#e3e7ed"/>
+    </linearGradient>
+  </defs>
+  <rect x="0.75" y="0.75" width="298.5" height="54.5" rx="27.25" fill="url(#g)" stroke="#cfd5de" stroke-width="1.5"/>
+  <rect x="8" y="8" width="40" height="40" rx="20" fill="#14171f"/>
+  <text x="28" y="34" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700" text-anchor="middle" fill="#ffffff">N</text>
+  <text x="172" y="34" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#14171f">노션 포트폴리오 보기</text>
+  <text x="276" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#14171f">→</text>
+</svg>
