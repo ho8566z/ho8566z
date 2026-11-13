@@ -6,6 +6,12 @@
 <div align='center'><h4> ✉ Email : <a href="mailto:ho8566z@gmail.com">ho8566z@gmail.com</a></h4></div>
 <div align='center'><h4> 🔗 Notion : <a href="https://app.notion.com/p/5bf00b1cd77d83e6abff018c339379b6?source=copy_link">노션 포트폴리오</a></h4></div>
 <br>
+<p align="center">
+  <a href="https://ho8566z.github.io/yunho-portfolio-2611/">
+    <img src="images/btn_web_portfolio.svg" width="320" alt="웹 포트폴리오 보기" />
+  </a>
+</p>
+<br>
 <br>
 
 <p align="center">
