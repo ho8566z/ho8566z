@@ -99,7 +99,7 @@
   ### ✅ 테스트
   - **기능별 테스트 작성**: 오류 응답, 로그인, 권한 검사, 작업 기록, 엑셀 등 구현한 기능마다 검수 기준 테스트를 함께 작성 (test → feat 순서로 진행)  
 
-👉 [프로젝트 소개 Repo](https://github.com/white-eyes1/white-eyes-introduce) · [프로젝트 코드 Repo](https://github.com/white-eyes1/white-eyes-spring) · [프로젝트 분석 Repo](https://github.com/white-eyes1/white-eyes-flask) · [문서 Repo](https://github.com/white-eyes1/white-eyes-docs)
+👉 [프로젝트 소개 Repo](https://github.com/white-eyes1/white-eyes-introduce) · [프로젝트 코드 Repo](https://github.com/white-eyes1/white-eyes-spring) · [프로젝트 분석 Repo](https://github.com/white-eyes1/white-eyes-flask) · [문서 Repo](https://github.com/white-eyes1/white-eyes-docs) · [Notion](https://app.notion.com/p/41400b1cd77d8003b89edf0efe261379)
 
 ---
 
@@ -149,7 +149,7 @@
   - **SSE 연결 중복(502)**: 페이지마다 연결이 새로 생겨 알림음·토스트가 중복되던 문제 → 연결 객체를 보관해 이미 있으면 새로 만들지 않고, 오류 시 닫고 초기화해 재연결  
   - **키 불일치(503)**: 이미지 조회 시 KeyError → 키 상수를 JSON에 저장된 실제 키(IMG_ROOT)와 일치시킴  
 
-👉 [프로젝트 Repo](https://github.com/Kanabig/obsidian-shield)
+👉 [프로젝트 Repo](https://github.com/Kanabig/obsidian-shield) · [Notion](https://app.notion.com/p/41400b1cd77d800fb83bcc3a81c240c1)
 
 ---
 
@@ -227,7 +227,7 @@
   - **트러블슈팅**: 29건 기록 (평문 비밀번호 커밋, 일정 소유자 검증 누락, 요청 폼 값 신뢰, 리눅스 MySQL 테이블명 대소문자, 달 이동 시 응답 순서 꼬임 등), 미해결 항목은 한계로 문서에 명시  
   - **문서**: README, 명세서 엑셀, 발표 자료(PPT) 작성  
 
-👉 [프로젝트 Repo](https://github.com/ho8566z/nado-ham) · [문서 Repo](https://github.com/ho8566z/nado-ham_word)
+👉 [프로젝트 Repo](https://github.com/ho8566z/nado-ham) · [문서 Repo](https://github.com/ho8566z/nado-ham_word) · [Notion](https://app.notion.com/p/41400b1cd77d80a1a8faf9bc78e7d37d)
 
 ---
 
