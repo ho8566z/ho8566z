@@ -153,7 +153,7 @@
 
 ---
 
-### 🖥 4차 개인 프로젝트 — nado_gam (나도 감)
+### 🖥 4차 개인 프로젝트 — nado-gam (나도 감)
 
 - **Overview**: 가고 싶은 여행지를 고르면 항공편·투어·호텔·크루즈를 보여 주고, 비행 경로를 3D 지구본으로 보여 주며 장바구니·모의 결제·QR 예약 확인까지 이어지는 여행사 웹 서비스
 
@@ -187,11 +187,11 @@
   - **트러블슈팅**: 10건 기록 (Thymeleaf 조각의 빈 호출 금지, 성공 알림이 오류처럼 보이던 색 충돌, 동시 결제 좌석 초과 방지 등)  
   - **문서**: 명세서(엑셀 13시트: 요구 88·기능 48·API 56·테이블 25)·설계서·ERD·발표 자료(PPT 32장)·노션 정리  
 
-👉 [프로젝트 Repo](https://github.com/ho8566z/nado_gam) · [문서 Repo](https://github.com/ho8566z/nado_gam_word) · [Notion](https://app.notion.com/p/41f00b1cd77d8020a023e67adbd29f95)
+👉 [프로젝트 Repo](https://github.com/ho8566z/nado-gam) · [문서 Repo](https://github.com/ho8566z/nado-gam_word) · [Notion](https://app.notion.com/p/41f00b1cd77d8020a023e67adbd29f95)
 
 ---
 
-### 🖥 1차 개인 프로젝트 — CALENDAR BOT
+### 🖥 1차 개인 프로젝트 — nado-ham
 
 - **Overview**: 월간 달력으로 일정을 기록하고, 다음 주 일정을 매주 일요일 21:00에 텔레그램으로 받아보는 개인 일정 관리 웹 서비스
 
@@ -227,7 +227,7 @@
   - **트러블슈팅**: 29건 기록 (평문 비밀번호 커밋, 일정 소유자 검증 누락, 요청 폼 값 신뢰, 리눅스 MySQL 테이블명 대소문자, 달 이동 시 응답 순서 꼬임 등), 미해결 항목은 한계로 문서에 명시  
   - **문서**: README, 명세서 엑셀, 발표 자료(PPT) 작성  
 
-👉 [프로젝트 Repo](https://github.com/ho8566z/calendar-bot) · [문서 Repo](https://github.com/ho8566z/calendar-bot_word)
+👉 [프로젝트 Repo](https://github.com/ho8566z/nado-ham) · [문서 Repo](https://github.com/ho8566z/nado-ham_word)
 
 ---
 
