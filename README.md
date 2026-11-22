@@ -153,6 +153,44 @@
 
 ---
 
+### 🖥 4차 개인 프로젝트 — nado_gam (나도 감)
+
+- **Overview**: 가고 싶은 여행지를 고르면 항공편·투어·호텔·크루즈를 보여 주고, 비행 경로를 3D 지구본으로 보여 주며 장바구니·모의 결제·QR 예약 확인까지 이어지는 여행사 웹 서비스
+
+- **Info**: 2026.11.19 ~ 2026.11.22 · 개인 프로젝트 (1인)
+
+- **Tech Point**: 서버가 가격을 다시 계산하는 장바구니·모의 결제와 `seats_left >= 인원` 조건부 UPDATE 좌석 차감(부족하면 결제 전체 롤백), 사용자·관리자(`/admin`) 필터 체인과 계정 테이블 분리, 읽기(JdbcClient)·쓰기(JPA) 분리
+
+- **Stack**  
+  <img src="images/badge_java.png" height="20" alt="Java" />&nbsp;
+  <img src="images/badge_springboot.png" height="20" alt="Spring Boot" />&nbsp;
+  <img src="images/badge_springsecurity.png" height="20" alt="Spring Security" />&nbsp;
+  <img src="images/badge_springdatajpa.png" height="20" alt="Spring Data JPA" />&nbsp;
+  <img src="images/badge_mysql.png" height="20" alt="MySQL" />&nbsp;
+  <img src="images/badge_javascript.png" height="20" alt="JavaScript" />&nbsp;  
+  Thymeleaf · globe.gl · H2 · ZXing(QR)
+
+- **My Role** (1인 개발: 기획 · 설계 · 구현 · 테스트 · 문서화 · 발표)
+
+  #### 🌍 탐색
+  - **지구본 메인 · 해외 여행**: 도시 100곳 사이의 비행 경로가 흐르는 3D 지구본(끌어서 놓은 방향으로 관성 회전), 여행지 98곳(권역 탭·검색·정렬 5종) → 출발지 → 직항/경유 → 항공편 상세, 항공편에 마우스를 올리면 경로 강조  
+  - **투어 · 국내여행 · 호텔 · 크루즈**: 투어 142개(3테마·기간별 옵션·대륙/국가 필터·정렬), 국내 11개 도시 이동편·숙소, 호텔 354개·크루즈 7곳
+
+  #### 🛒 예약
+  - **장바구니 · 모의 결제 · QR**: 항공권·투어·호텔·크루즈·이동편을 담아 결제하면 좌석이 줄고 예약 번호와 QR(ZXing 서버 SVG)이 발급, 휴대폰으로 예약 확인, 관리자가 QR 토큰으로 체크인  
+
+  #### 🛠 관리자 · 운영
+  - **관리자 화면**: 항공편·특별전·투어·호텔 등록·수정·삭제(삭제 탭에서 복구), 노출 중지·재개와 작업 이력, 회원 정지, 팝업·고객문의 답변  
+
+  #### ✅ 테스트 · 문서화
+  - **테스트**: 자동 테스트 169개 통과(22개 클래스), 담기 → 결제 → 예약·QR → 체크인과 390px 화면, 휴대폰 QR 스캔을 직접 확인 (MySQL 프로필 실제 실행은 미확인)  
+  - **트러블슈팅**: 10건 기록 (Thymeleaf 조각의 빈 호출 금지, 성공 알림이 오류처럼 보이던 색 충돌, 동시 결제 좌석 초과 방지 등)  
+  - **문서**: 명세서(엑셀 13시트: 요구 88·기능 48·API 56·테이블 25)·설계서·ERD·발표 자료(PPT 32장)·노션 정리  
+
+👉 [프로젝트 Repo](https://github.com/ho8566z/nado_gam) · [문서 Repo](https://github.com/ho8566z/nado_gam_word) · [Notion](https://app.notion.com/p/41f00b1cd77d8020a023e67adbd29f95)
+
+---
+
 ### 🖥 3차 개인 프로젝트 — job-feed
 
 - **Overview**: 고용24 공채속보에서 개발·IT 채용공고를 주기적으로 수집해 중복을 거르고, 대기열과 재시도를 거쳐 안정적으로 노션 DB에 전달하는 채용공고 알림 서비스
