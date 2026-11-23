@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script src="data.js"></script>
+<script>(function(){var RD=Date,off=new RD("2026-11-23T10:00:00+09:00")-RD.now();
+function FD(){var a=arguments;if(!(this instanceof FD))return new RD(RD.now()+off).toString();if(a.length===0)return new RD(RD.now()+off);return new(Function.prototype.bind.apply(RD,[null].concat([].slice.call(a))))}
+FD.prototype=RD.prototype;FD.now=function(){return RD.now()+off};FD.parse=RD.parse;FD.UTC=RD.UTC;window.Date=FD;
+var DATA=window.__WE_DATA,M={"stats": "stats.html", "stats/graph": "graph.html", "events": "events.html", "cameras": "cameras.html", "zones": "zones.html", "users": "users.html", "admin/stats": "stats.html"};
+function res(o){return Promise.resolve({ok:true,status:200,json:function(){return Promise.resolve(o)},text:function(){return Promise.resolve(JSON.stringify(o))},headers:{get:function(){return"application/json"}}})}
+window.fetch=function(u,opt){var m=((opt&&opt.method)||"GET").toUpperCase();var k=String(u).replace(location.origin,"").replace(/^\.?\/?(?=api|admin)/,"/");
+if(m!=="GET")return res({ok:true});
+if(DATA[k])return res(DATA[k]);var b=k.split("?")[0];
+var c=[];for(var x in DATA){if(x.split("?")[0]===b)c.push(x)}
+if(c.length){var qp=k.indexOf("?")>-1?k.split("?")[1]:"";var best=c[0];c.forEach(function(x){if(qp&&x.indexOf(qp.split("&")[0])>-1)best=x});return res(DATA[best])}
+return res(b.indexOf("/events")>-1||b.indexOf("/users")>-1?{content:[],totalElements:0,page:0,size:20}:[])};
+window.EventSource=function(){this.close=function(){};this.addEventListener=function(){};this.onerror=null;this.onmessage=null};
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href");if(!h||h.charAt(0)==="#"||/^(javascript|http|mailto)/.test(h))return;e.preventDefault();e.stopPropagation();var k=h.replace(/^\//,"").split("?")[0].replace(/\/$/,"");if(M[k])location.href=M[k]},true);
+document.addEventListener("submit",function(e){e.preventDefault()},true);
+})();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="ykn1nhehjP_nvtRiaY1Q-djJ9YNfFAPcuwLsHcura-jcpa4ArH2X-CWZvsjKjeZWCKBkyej62Lo9dzrx3TuOK_-eXdu4xs1m">
+    <meta name="context-path" content="/admin/">
+    <title>캠 관리 - White Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+    <link rel="stylesheet" href="css/we.css">
+
+    <link rel="stylesheet" href="css/camera-modal.css">
+    <link rel="stylesheet" href="css/admin/cameras.css">
+    <link rel="stylesheet" href="css/live.css">
+</head>
+<body class="we">
+<header class="we topbar" data-header="admin">
+    <a class="brand" href="admin/stats">White Eyes<small>관리자</small></a>
+    <nav class="tabs" aria-label="주요 메뉴">
+        <a class="tab" href="admin/stats">대시보드</a>
+        <a class="tab" href="admin/stats/graph">통계</a>
+        <div class="tab-group">
+            <a class="tab" href="admin/events">이벤트 로그</a>
+            <!-- 미확인 이벤트 배지(FNC-A-048). 탭은 필터 없이 SCR-A-010으로, 배지만 미확인 필터로 간다. 숫자는 알림 스트림이 채우고, 0이면 숨긴다 -->
+            <a class="badge-count" href="admin/events?status=UNCHECKED" id="unchecked-badge" hidden></a>
+        </div>
+        <div class="menu-wrap" data-menu>
+            <button type="button" class="tab on" aria-haspopup="true" aria-expanded="false" data-menu-toggle>관리
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <div class="menu-list" hidden data-menu-list>
+                <a href="admin/zones">구역 관리</a>
+                <a href="admin/cameras">캠 관리</a>
+                <a href="admin/users">사용자 관리</a>
+                <a href="admin/admins">관리자 관리</a>
+                <a href="admin/histories">작업 기록</a>
+            </div>
+        </div>
+    </nav>
+    <div class="head-right">
+        <div class="legend" id="level-legend" aria-label="혼잡 단계 범례"></div>
+        <div class="usermenu-wrap" data-menu>
+            <button type="button" class="usermenu" aria-haspopup="true" aria-expanded="false" data-menu-toggle>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+                <span>localadmin</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <div class="menu-list right" hidden data-menu-list>
+                <a href="admin/me">내 정보</a>
+                <form action="admin/logout" method="post"><input type="hidden" name="_csrf" value="ykn1nhehjP_nvtRiaY1Q-djJ9YNfFAPcuwLsHcura-jcpa4ArH2X-CWZvsjKjeZWCKBkyej62Lo9dzrx3TuOK_-eXdu4xs1m"/><button type="submit">로그아웃</button></form>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="page">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">CAMERAS</p>
+            <h1>캠 관리</h1>
+            <p>구역마다 캠 1대. 가동하면 분석 서버가 영상을 분석하고, 더미 캠은 처음 한 번 준비(분석)를 거칩니다.</p>
+        </div>
+        <button type="button" class="btn primary" id="camera-add">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>캠 등록
+        </button>
+    </div>
+
+    <section class="panel cam-panel">
+        <div class="filterbar">
+            <span class="muted cam-summary" id="camera-summary">불러오는 중…</span>
+        </div>
+        <div class="table-wrap">
+            <div class="dtable cam-table" role="table" aria-label="캠 목록">
+                <div class="tr th" role="row">
+                    <span role="columnheader">구역</span>
+                    <span role="columnheader">캠 이름</span>
+                    <span role="columnheader">입력 방식</span>
+                    <span role="columnheader">상태</span>
+                    <span role="columnheader">준비 진행률</span>
+                    <span role="columnheader">오류 내용</span>
+                    <span role="columnheader" class="cam-right">동작</span>
+                </div>
+                <div id="camera-rows" role="rowgroup"></div>
+                <p class="muted cam-empty" id="camera-empty" hidden>등록된 캠이 없습니다. '캠 등록'으로 구역에 캠을 추가하세요.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- SCR-A-007 캠 등록·수정 창(대시보드와 같은 창) -->
+<div class="modal-stage cam-modal-stage" id="camera-modal" hidden>
+    <form class="modal cam-modal" id="camera-form" role="dialog" aria-modal="true" aria-labelledby="camera-modal-title" novalidate>
+        <div class="modal-head">
+            <h2 id="camera-modal-title">캠 등록</h2>
+            <button class="icon-btn" type="button" aria-label="닫기" data-close>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p class="alert" id="camera-form-error" role="alert" hidden></p>
+            <div class="field">
+                <label for="camera-zone">구역</label>
+                <select class="input" id="camera-zone" name="zoneId"></select>
+                <span class="hint" id="camera-zone-hint">캠이 없는 구역만 고를 수 있습니다(구역당 1대)</span>
+                <span class="hint err" data-error-for="zoneId" hidden></span>
+            </div>
+            <div class="field">
+                <label for="camera-name">캠 이름</label>
+                <input class="input" id="camera-name" name="name" type="text" maxlength="50" autocomplete="off">
+                <span class="hint err" data-error-for="name" hidden></span>
+            </div>
+            <div class="field">
+                <span id="camera-type-label">입력 방식</span>
+                <div class="seg" role="radiogroup" aria-labelledby="camera-type-label">
+                    <label><input type="radio" name="sourceType" value="DUMMY" checked><span>더미 영상</span></label>
+                    <label><input type="radio" name="sourceType" value="LIVE"><span>라이브(RTSP)</span></label>
+                </div>
+            </div>
+            <div class="field">
+                <label for="camera-uri">영상 주소</label>
+                <input class="input" id="camera-uri" name="sourceUri" type="text" maxlength="255" autocomplete="off">
+                <span class="hint" id="camera-uri-hint"></span>
+                <span class="hint err" data-error-for="sourceUri" hidden></span>
+            </div>
+            <p class="muted cam-note">파일이 실제로 있는지는 가동할 때 분석 서버가 확인합니다.</p>
+        </div>
+        <div class="modal-foot">
+            <button class="btn secondary" type="button" data-close>취소</button>
+            <button class="btn primary" type="submit" id="camera-save">저장</button>
+        </div>
+    </form>
+</div>
+
+<!-- FNC-A-023 캠 삭제 확인 창 -->
+<div class="modal-stage cam-modal-stage" id="camera-delete-modal" hidden>
+    <div class="modal cam-modal cam-confirm" role="alertdialog" aria-modal="true" aria-labelledby="camera-delete-title">
+        <div class="modal-head">
+            <h2 id="camera-delete-title">캠 삭제</h2>
+            <button class="icon-btn" type="button" aria-label="닫기" data-delete-close>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p id="camera-delete-message">이 캠을 삭제할까요? 가동한 적이 있으면 지난 녹화·통계는 남습니다.</p>
+        </div>
+        <div class="modal-foot">
+            <button class="btn secondary" type="button" data-delete-close>취소</button>
+            <button class="btn danger" type="button" id="camera-delete-confirm">삭제</button>
+        </div>
+    </div>
+</div>
+
+<!-- SCR-A-008 실시간 보기 창 -->
+<div class="modal-stage live-modal-stage" id="live-modal" hidden>
+    <div class="modal live-modal" role="dialog" aria-modal="true" aria-label="실시간 보기">
+        <div class="modal-head">
+            <div>
+                <p class="eyebrow">LIVE VIEW · <span id="live-cam"></span></p>
+                <h2><span id="live-name"></span> <span class="muted live-place" id="live-place"></span></h2>
+            </div>
+            <button class="icon-btn" type="button" aria-label="닫기" data-live-close>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+            </button>
+        </div>
+        <div class="live-body">
+            <div class="live-feed">
+                <img id="live-img" alt="실시간 영상" hidden>
+                <div class="live-notice" id="live-notice" role="status" hidden>
+                    <span id="live-notice-text"></span>
+                    <button type="button" class="btn secondary sm" id="live-retry" hidden>다시 시도</button>
+                </div>
+                <span class="live-badge"><i class="rec"></i>LIVE · MJPEG</span>
+                <span class="live-count-badge" id="live-count-badge"></span>
+            </div>
+        </div>
+        <!-- 현재 통계 4칸(통계 SSE로 갱신). 1시간 순증감은 아래 그래프와 같은 응답의 유입 합 − 유출 합 -->
+        <div class="live-foot">
+            <div class="live-stat"><span class="muted">현재 인원</span><div class="value" id="live-count">-</div></div>
+            <div class="live-stat"><span class="muted">밀집도</span><div class="value"><span id="live-density">-</span> <small class="muted">명/㎡</small></div></div>
+            <div class="live-stat"><span class="muted">혼잡 단계</span><div class="value"><span class="chip" id="live-level" hidden></span><span id="live-level-none">-</span></div></div>
+            <div class="live-stat"><span class="muted">1시간 순증감</span><div class="value" id="live-net">-</div></div>
+            <button type="button" class="btn secondary live-playback" id="live-playback">다시보기</button>
+        </div>
+        <!--
+          영상 아래 그래프 2행 2열(결정 0016, js/live/live-graphs.js). GET /api/v1/stats/series(구역, 1m, 최근 60분) 하나로 그리고,
+          캠 카드·통계 그래프(1m)와 같은 1분 통계·같은 단계(level)라 같은 분이면 같은 값이다
+        -->
+        <div class="live-graphs" id="live-graphs">
+            <section class="live-graph">
+                <h3>최근 10분 · 혼잡 단계</h3>
+                <div class="live-graph-body" id="live-graph-10m"></div>
+                <div class="live-axis muted"><span>-10분</span><span>지금</span></div>
+            </section>
+            <section class="live-graph">
+                <h3>최근 1시간 · 혼잡 단계</h3>
+                <div class="live-graph-body" id="live-graph-60m"></div>
+                <div class="live-axis muted"><span>-60분</span><span>-30분</span><span>지금</span></div>
+            </section>
+            <section class="live-graph">
+                <h3>방향별 흐름 · 1시간</h3>
+                <div class="live-direction">
+                    <div class="live-compass" id="live-compass"></div>
+                    <div class="live-direction-bars" id="live-direction-bars"></div>
+                </div>
+            </section>
+            <section class="live-graph">
+                <h3>최근 1시간 · 인원 · 유입·유출 <a class="live-stats-link" id="live-stats-link" href="#">통계에서 보기 ↗</a></h3>
+                <div class="live-graph-body" id="live-graph-count"></div>
+                <div class="live-graph-body" id="live-graph-flow"></div>
+                <div class="live-axis muted"><span>-60분</span><span>-30분</span><span>지금</span></div>
+            </section>
+            <p class="live-graph-legend muted"><i class="in"></i>유입<i class="out"></i>유출<i class="l1"></i>정상<i class="l2"></i>주의<i class="l3"></i>위험·주의 이상 구간<i class="now"></i>지금</p>
+            <p class="muted live-graph-error" id="live-graph-error" hidden>그래프를 불러오지 못했습니다.</p>
+        </div>
+    </div>
+</div>
+
+
+    <script src="bundle/js_common_header.js"></script>
+<script src="bundle/js_admin_pages_cameras.js"></script>
+</body>
+</html>

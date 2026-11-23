@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--
+  통계 메인(대시보드) SCR-C-003, 두 앱이 함께 쓰는 화면(FNC-C-008·009·016·025, 캠 패널 FNC-A-022).
+  admin 모델 값이 true일 때만 지역 등록·수정 버튼과 캠 패널이 그려진다(관리자 앱).
+  새 1분 통계는 통계 SSE(FNC-C-022)로 받아 화면을 새로 읽는다.
+  비정상 인원 변동(FNC-C-020)은 펼칠 때 기간 비교 API로 읽는다.
+  보조 지표(FNC-C-030)는 펼친 영역에 필요한 통계 시계열만 읽는다. 이벤트 종류별 건수는 관리자 앱에만 있다(이벤트 요약 API가 관리자 이상).
+  엑셀 다운로드(SCR-C-006, FNC-C-023)는 통계 패널 아래 버튼으로 현재 지역을 넘겨 창을 연다.
+  시간대별 혼잡 단계(FNC-C-018)는 펼칠 때 오늘 0~23시 단계를 읽는다.
+  방문 패턴(FNC-C-028)은 펼칠 때 어제까지 28일의 요일 × 시간 평균 인원을 읽는다.
+  피크 시간 TOP 3(FNC-C-029)·증감 추세(FNC-C-019)는 한 접기 영역(peak-trend)을 함께 쓴다. 피크는 기간 탭(기본 주)의 상위 3개 시간대를,
+  증감은 어제까지 7일을 지난주·지난달·지난해와 비교해 읽는다(펼칠 때).
+  지도 도구 이동 흐름(FNC-C-010)은 동 단계에서 켜면 기간의 구역 간 이동을 화살표로 그린다.
+  지도 도구 히트맵(FNC-C-011)은 켜면 하위 단위를 시간대별 평균값의 파랑 진하기로 칠한다.
+-->
+<head>
+<script src="data.js"></script>
+<script>(function(){var RD=Date,off=new RD("2026-11-23T10:00:00+09:00")-RD.now();
+function FD(){var a=arguments;if(!(this instanceof FD))return new RD(RD.now()+off).toString();if(a.length===0)return new RD(RD.now()+off);return new(Function.prototype.bind.apply(RD,[null].concat([].slice.call(a))))}
+FD.prototype=RD.prototype;FD.now=function(){return RD.now()+off};FD.parse=RD.parse;FD.UTC=RD.UTC;window.Date=FD;
+var DATA=window.__WE_DATA,M={"stats": "stats.html", "stats/graph": "graph.html"};
+function res(o){return Promise.resolve({ok:true,status:200,json:function(){return Promise.resolve(o)},text:function(){return Promise.resolve(JSON.stringify(o))},headers:{get:function(){return"application/json"}}})}
+window.fetch=function(u,opt){var m=((opt&&opt.method)||"GET").toUpperCase();var k=String(u).replace(location.origin,"").replace(/^\.?\/?(?=api|admin)/,"/");
+if(m!=="GET")return res({ok:true});
+if(DATA[k])return res(DATA[k]);var b=k.split("?")[0];
+var c=[];for(var x in DATA){if(x.split("?")[0]===b)c.push(x)}
+if(c.length){var qp=k.indexOf("?")>-1?k.split("?")[1]:"";var best=c[0];c.forEach(function(x){if(qp&&x.indexOf(qp.split("&")[0])>-1)best=x});return res(DATA[best])}
+return res(b.indexOf("/events")>-1||b.indexOf("/users")>-1?{content:[],totalElements:0,page:0,size:20}:[])};
+window.EventSource=function(){this.close=function(){};this.addEventListener=function(){};this.onerror=null;this.onmessage=null};
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href");if(!h||h.charAt(0)==="#"||/^(javascript|http|mailto)/.test(h))return;e.preventDefault();e.stopPropagation();var k=h.replace(/^\//,"").split("?")[0].replace(/\/$/,"");if(M[k])location.href=M[k]},true);
+document.addEventListener("submit",function(e){e.preventDefault()},true);
+})();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="E6pfzL7u4yCDtzjpjnFLCpYRQdBPiAncAIyCUeQTWT_F5qOiIMk--YuI0xOu1Qjd7Fx_b6IobOgp6TnxYujnM4Z2aF7xhMXE">
+    <meta name="context-path" content="/">
+    <title>대시보드 - White Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+    <link rel="stylesheet" href="css/we.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.min.js"></script>
+
+    <link rel="stylesheet" href="css/stats-main.css">
+    <link rel="stylesheet" href="css/live.css">
+    <link rel="stylesheet" href="css/stats-export.css">
+    
+</head>
+<body class="we">
+<div class="dash" id="dash" data-admin="false">
+    <header class="we topbar" data-header="user">
+    <a class="brand" href="stats">White Eyes<small>혼잡 현황</small></a>
+    <nav class="tabs" aria-label="주요 메뉴">
+        <a class="tab on" href="stats">대시보드</a>
+        <a class="tab" href="stats/graph">통계</a>
+    </nav>
+    <div class="head-right">
+        <div class="legend" id="level-legend" aria-label="혼잡 단계 범례"></div>
+        <div class="usermenu-wrap" data-menu>
+            <button type="button" class="usermenu" aria-haspopup="true" aria-expanded="false" data-menu-toggle>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+                <span>demouser01</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <div class="menu-list right" hidden data-menu-list>
+                <a href="me">내 정보</a>
+                <form action="logout" method="post"><input type="hidden" name="_csrf" value="E6pfzL7u4yCDtzjpjnFLCpYRQdBPiAncAIyCUeQTWT_F5qOiIMk--YuI0xOu1Qjd7Fx_b6IobOgp6TnxYujnM4Z2aF7xhMXE"/><button type="submit">로그아웃</button></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="filterbar">
+        <span class="filter-title">지역 필터</span>
+        <select class="input filter-select" id="filter-sido" aria-label="시·도"></select>
+        <select class="input filter-select" id="filter-sigungu" aria-label="시·군·구"></select>
+        <select class="input filter-select" id="filter-emd" aria-label="읍·면·동"></select>
+        <!-- 실시간 통계 갱신(FNC-C-022) 연결이 끊기면 보인다. 브라우저가 5초 뒤 자동으로 다시 연결한다 -->
+        <span class="stream-status" id="stream-status" role="status" hidden>
+            <i class="dot off"></i>연결 끊김 · 다시 연결하는 중
+        </span>
+        
+    </div>
+
+    <div class="dash-split">
+        <aside class="stat-panel" id="stat-panel">
+            <div class="stat-head">
+                <span><b>통계</b> <span class="target" id="stat-target"></span></span>
+                <button type="button" class="icon-btn" id="panel-collapse" aria-label="통계 패널 접기">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg>
+                </button>
+            </div>
+            <div class="stat-body">
+                <section class="acc zone-box">
+                    <div class="row-between"><strong>구역별 현재 인원</strong><span class="muted small" id="zone-time"></span></div>
+                    <div class="tabrow" role="tablist">
+                        <button type="button" class="btn primary sm" data-zone-tab="count">현재 인원</button>
+                        <button type="button" class="btn secondary sm" data-zone-tab="event">이벤트</button>
+                        <button type="button" class="btn secondary sm" data-zone-tab="level">혼잡 단계</button>
+                    </div>
+                    <div class="donut-row">
+                        <div class="donut" id="zone-donut"><div class="donut-hole"><small class="muted">합계</small><div id="zone-total">-</div></div></div>
+                        <div class="zone-list" id="zone-list"></div>
+                    </div>
+                </section>
+                <section class="acc">
+                    <div class="acc-h">요약<span class="muted small" id="summary-time"></span></div>
+                    <div class="cells">
+                        <div class="cell"><strong id="sum-count">-</strong><span>현재 인원</span></div>
+                        <div class="cell"><strong id="sum-density">-</strong><span>밀집도 명/㎡</span></div>
+                        <div class="cell"><strong id="sum-level">-</strong><span>혼잡 단계</span></div>
+                        <div class="cell"><strong id="sum-cameras">-</strong><span>가동 / 캠</span></div>
+                        <div class="cell"><strong id="sum-events">-</strong><span>오늘 이벤트</span></div>
+                        <div class="cell"><strong id="sum-max">-</strong><span>오늘 최대</span></div>
+                    </div>
+                </section>
+                <!-- 시간대별 혼잡 단계(FNC-C-018): 펼칠 때 오늘 0~23시 단계를 읽는다(stats-main/hourly-levels.js) -->
+                <details class="acc fold" id="hourly-levels">
+                    <summary class="acc-h">시간대별 혼잡 단계<span class="muted small">오늘 0~23시</span></summary>
+                    <div class="acc-b">
+                        <div class="hour-bars" id="hourly-levels-bars" role="img" aria-label="오늘 시간대별 혼잡 단계"></div>
+                        <div class="hour-axis muted"><span>0시</span><span>6</span><span>12</span><span>18</span><span>23시</span></div>
+                        <span class="muted" id="hourly-levels-message" hidden></span>
+                    </div>
+                </details>
+                <!-- 방문 패턴(FNC-C-028): 펼칠 때 어제까지 28일의 요일 × 시간 평균 인원을 읽는다(stats-main/visit-pattern.js) -->
+                <details class="acc fold" id="visit-pattern">
+                    <summary class="acc-h">방문 패턴 (요일×시간)<span class="muted small">어제까지 28일</span></summary>
+                    <div class="acc-b">
+                        <div class="pattern-grid" id="visit-pattern-grid" role="img" aria-label="요일·시간대별 평균 인원"></div>
+                        <span class="muted" id="visit-pattern-message" hidden></span>
+                    </div>
+                </details>
+                <section class="acc">
+                    <div class="acc-h">유입·유출 (추정)<span class="muted small">최근 1분</span></div>
+                    <div class="cells flow">
+                        <div class="cell"><strong class="in" id="flow-in">-</strong><span>유입</span></div>
+                        <div class="cell"><strong class="out" id="flow-out">-</strong><span>유출</span></div>
+                        <div class="cell"><strong id="flow-dir">-</strong><span>주요 방향</span></div>
+                    </div>
+                </section>
+                <section class="acc">
+                    <div class="acc-h">혼잡 기준<span class="muted small" id="level-rule"></span></div>
+                    <ul class="level-rules" id="level-rules"></ul>
+                </section>
+                <!-- 피크 시간 TOP 3(FNC-C-029, stats-main/peak-hours.js)과 그 아래 증감 추세(FNC-C-019, 줄을 누르면 기간 비교, stats-main/trend.js) -->
+                <details class="acc fold" id="peak-trend">
+                    <summary class="acc-h">피크 시간 TOP 3 · 증감 추세<span class="muted small">어제까지</span></summary>
+                    <div class="acc-b">
+                        <div class="peak-periods" id="peak-periods" role="tablist" aria-label="기간">
+                            <button type="button" role="tab" data-period="DAY">일</button>
+                            <button type="button" role="tab" data-period="WEEK">주</button>
+                            <button type="button" role="tab" data-period="MONTH">월</button>
+                            <button type="button" role="tab" data-period="YEAR">연</button>
+                        </div>
+                        <div class="aux-rank peak-list" id="peak-list"></div>
+                        <div class="trend-list" id="trend-list"></div>
+                    </div>
+                </details>
+                <!-- 비정상 인원 변동(FNC-C-020): 펼칠 때 최근 7일을 지난달 같은 요일과 비교해 읽는다 -->
+                <details class="acc fold" id="abnormal-box">
+                    <summary class="acc-h">비정상 인원 변동<span class="muted small">최근 7일 · 지난달 대비</span></summary>
+                    <div class="acc-b">
+                        <div class="muted" id="abnormal-count"></div>
+                        <div class="abnormal-list" id="abnormal-list"></div>
+                        <a class="btn secondary sm" id="abnormal-detail" href="stats/graph">자세히</a>
+                    </div>
+                </details>
+                <!-- 보조 지표(FNC-C-030): 기존 통계 응답으로 화면에서 계산한다(stats-main/aux-metrics.js) -->
+                <details class="acc fold" id="aux-flow">
+                    <summary class="acc-h">방향별 유입·유출 (추정)<span class="muted small">최근 1시간</span></summary>
+                    <div class="acc-b aux-flow" id="aux-flow-body"></div>
+                </details>
+                <details class="acc fold" id="aux-dwell">
+                    <summary class="acc-h">평균 체류 시간 (추정)<span class="muted small">최근 1시간</span></summary>
+                    <div class="acc-b" id="aux-dwell-body"></div>
+                </details>
+                <details class="acc fold" id="aux-spread">
+                    <summary class="acc-h">인원 변동폭<span class="muted small">최근 1시간 · 1분마다</span></summary>
+                    <div class="acc-b" id="aux-spread-body"></div>
+                </details>
+                <details class="acc fold" id="aux-level-time">
+                    <summary class="acc-h">오늘 단계별 머문 시간<span class="muted small">오늘 0시부터</span></summary>
+                    <div class="acc-b" id="aux-level-time-body"></div>
+                </details>
+                <details class="acc fold" id="aux-top-zones">
+                    <summary class="acc-h">혼잡 구역 TOP 5<span class="muted small">밀집도 순</span></summary>
+                    <div class="acc-b aux-rank" id="aux-top-zones-body"></div>
+                </details>
+                
+                <details class="acc fold" id="aux-observe">
+                    <summary class="acc-h">관측 상태</summary>
+                    <div class="acc-b">
+                        <div class="row"><span class="grow">통계가 있는 구역</span><b id="aux-observe-zones">-</b></div>
+                        <div class="row"><span class="grow">최근 1시간 수신율</span><span class="aux-rate" id="aux-observe-rate">-</span></div>
+                        <span class="muted">지역 값은 통계가 있는 구역만의 값입니다.</span>
+                    </div>
+                </details>
+                <!-- 그래프 보기(FNC-C-012)·엑셀 다운로드(FNC-C-023): 현재 지역을 넘긴다(panel.js renderGraphLink, stats-main.js openExport) -->
+                <div class="panel-actions">
+                    <a class="btn secondary" id="graph-link" href="stats/graph">그래프 보기</a>
+                    <button type="button" class="btn secondary" id="export-open">엑셀 다운로드</button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="dash-main">
+        <div class="dash-body" id="dash-body">
+        <section class="map dash-map" aria-label="지도">
+            <div class="map-canvas" id="dash-map"></div>
+            <button type="button" class="btn secondary sm panel-open" id="panel-open" hidden>통계</button>
+            <div class="map-legend legend" id="map-legend"></div>
+            <!-- 한 단계 위 지역으로 올라가는 뒤로가기(시·도 단계에서는 숨김). 올라갈 지역 이름은 stats-main.js가 넣는다 -->
+            <button type="button" class="btn secondary sm map-back" id="map-back" hidden>← 상위 지역</button>
+            <!-- 지도 도구(시안 SCR-C-003 지도 오른쪽 위). 이동 흐름(FNC-C-010)은 동 단계에서만 켤 수 있다(stats-main/flow-tool.js). 히트맵(FNC-C-011): 조건·시간대 슬라이더·재생(stats-main/heatmap-tool.js) -->
+            <div class="map-tools" id="map-tools">
+                <div class="map-tool">
+                    <button type="button" class="btn secondary sm" id="flow-toggle" aria-pressed="false">이동 흐름 (추정)</button>
+                    <select class="input map-tool-select" id="flow-period" aria-label="이동 흐름 기간" hidden>
+                        <option value="1h" selected>최근 1시간</option>
+                        <option value="24h">최근 24시간</option>
+                        <option value="7d">최근 7일</option>
+                        <option value="30d">최근 30일</option>
+                    </select>
+                </div>
+                <span class="map-tool-status" id="flow-status" role="status" hidden></span>
+                <div class="map-tool">
+                    <button type="button" class="btn secondary sm" id="heatmap-toggle" aria-pressed="false">히트맵</button>
+                </div>
+                <div class="heatmap-box" id="heatmap-box" hidden>
+                    <div class="heatmap-row">
+                        <input class="input" type="date" id="heatmap-from" aria-label="히트맵 시작 날짜">
+                        <span class="muted">~</span>
+                        <input class="input" type="date" id="heatmap-to" aria-label="히트맵 끝 날짜">
+                    </div>
+                    <div class="heatmap-row">
+                        <select class="input" id="heatmap-item" aria-label="히트맵 항목">
+                            <option value="COUNT">인원</option>
+                            <option value="DENSITY">밀집도</option>
+                            <option value="INFLOW">유입</option>
+                            <option value="OUTFLOW">유출</option>
+                        </select>
+                        <select class="input" id="heatmap-day-type" aria-label="히트맵 요일">
+                            <option value="ALL">전체 요일</option>
+                            <option value="WEEKDAY">평일</option>
+                            <option value="WEEKEND">주말</option>
+                        </select>
+                    </div>
+                    <div class="heatmap-row">
+                        <button type="button" class="btn secondary sm" id="heatmap-play" aria-pressed="false">재생</button>
+                        <input type="range" id="heatmap-hour" min="0" max="23" step="1" value="0" aria-label="시간대">
+                        <b class="heatmap-hour" id="heatmap-hour-label">0시</b>
+                    </div>
+                    <div class="heatmap-row heatmap-legend"><i></i><span class="muted" id="heatmap-range"></span></div>
+                    <span class="muted" id="heatmap-status" role="status" hidden></span>
+                </div>
+            </div>
+            <!-- 구역 수정(FNC-A-015, 관리자 앱만, 동 단계): 지도에서 꼭짓점을 고치고 면적(현재 → 고친 값)·소속 동 미리보기, 이름 수정(stats-main/zone-edit.js) -->
+            
+            
+            
+        </section>
+        </div>
+
+    
+        </div>
+    </div>
+</div>
+<!-- SCR-A-008 실시간 보기 창(관리자 앱만) -->
+
+<!-- SCR-C-006 엑셀 다운로드 창(두 앱) -->
+<div class="modal-stage export-modal-stage" id="export-modal" hidden>
+    <form class="modal export-modal" role="dialog" aria-modal="true" aria-labelledby="export-title" novalidate>
+        <div class="modal-head">
+            <h2 id="export-title">엑셀 다운로드</h2>
+            <button class="icon-btn" type="button" aria-label="닫기" data-export-close>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <label class="field">범위
+                <select class="input" id="export-scope"></select>
+            </label>
+            <div class="export-sum" id="export-sum-row" hidden>
+                <label class="ck"><input type="checkbox" id="export-sum"><i></i>지역 합산으로 받기</label>
+                <span class="export-sum-hint">체크하면 지역을 합산해 한 줄로 받습니다. 체크하지 않으면 소속 구역별로 받습니다</span>
+            </div>
+            <div class="export-period">
+                <label class="field export-period-range">기간
+                    <span class="export-period-inputs">
+                        <input class="input" type="datetime-local" id="export-from" aria-label="시작 시각">
+                        <span class="muted">~</span>
+                        <input class="input" type="datetime-local" id="export-end" aria-label="끝 시각">
+                    </span>
+                </label>
+                <label class="field export-interval">단위
+                    <select class="input" id="export-interval">
+                        <option value="1m">1분</option>
+                        <option value="1h">1시간</option>
+                        <option value="1d">1일</option>
+                        <option value="1w">1주</option>
+                        <option value="1M">1월</option>
+                        <option value="1y">1년</option>
+                    </select>
+                </label>
+            </div>
+            <div class="field">항목
+                <div class="export-items" id="export-items">
+                    <label class="ck"><input type="checkbox" value="COUNT" checked><i></i>인원</label>
+                    <label class="ck"><input type="checkbox" value="DENSITY" checked><i></i>밀집도</label>
+                    <label class="ck"><input type="checkbox" value="INFLOW" checked><i></i>유입</label>
+                    <label class="ck"><input type="checkbox" value="OUTFLOW" checked><i></i>유출</label>
+                    <label class="ck"><input type="checkbox" value="DWELL"><i></i>평균 체류</label>
+                </div>
+            </div>
+            <p class="hint err export-reason" id="export-reason" role="status" hidden></p>
+            <p class="alert" id="export-error" role="alert" hidden></p>
+        </div>
+        <div class="modal-foot">
+            <button class="btn secondary" type="button" data-export-close>취소</button>
+            <button class="btn primary" type="submit" id="export-submit">다운로드</button>
+        </div>
+    </form>
+</div>
+
+
+    <script src="bundle/js_common_header.js"></script>
+<script src="bundle/js_pages_stats-main.js"></script>
+</body>
+</html>
