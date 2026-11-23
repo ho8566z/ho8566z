@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>white-eyes | 메인 페이지</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23ffb0d0'/%3E%3Ccircle cx='32' cy='32' r='16' fill='%23ff5a36' stroke='%2314120f' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.tabs{display:flex;gap:8px;padding:10px 14px;background:#0f1a30;border-bottom:var(--bd)}
+.tabs button{border:2px solid var(--ink);background:transparent;color:var(--text);font:800 13.5px var(--font);padding:5px 18px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:#2c5fe0;color:#fff}
+.live-app{display:block;width:100%;height:880px;border:0;background:#0b1220}
+@media (max-width:860px){.live-app{height:900px}}
+</style>
+</head>
+<body data-p="white-eyes">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="white-eyes.html"><i></i>white-eyes</a>
+  <ul>
+    <li><a href="nado-ham.html">nado-ham</a></li>
+    <li><a href="nado-gam.html">nado-gam</a></li>
+    <li><a href="obsidian-shield.html">obsidian-shield</a></li>
+    <li><a class="on" href="white-eyes.html">white-eyes</a></li>
+  </ul>
+</div></header>
+
+<main>
+<div class="wrap">
+<div class="hero">
+  <p class="eyebrow">2차 팀 프로젝트 · 드론 관제 유동인구 분석</p>
+  <h1>지금 <span class="hl">몇 명</span>이 어디에 있을까</h1>
+  <p class="lead">드론·CCTV 영상에서 사람을 세고 따라가며 구역별 인원·밀집도·유입/유출·체류 시간을 쌓아, 지도·그래프·대시보드로 보여주는 군중 관제 서비스입니다. 혼잡이 심해지면 이벤트로 기록해 관리자에게 알립니다.</p>
+  <ul class="chips"><li>Java 17</li><li>Spring Boot</li><li>Spring Security</li><li>JPA</li><li>MySQL · Flyway</li><li>Flask · YOLOv8</li><li>Leaflet · Chart.js</li><li>nginx · Docker Compose</li></ul>
+  <div class="cta"><a class="btn primary" href="https://github.com/white-eyes1/white-eyes-introduce" target="_blank" rel="noopener">GitHub 보기 ↗</a><a class="btn" href="#main-screen">실행 화면 ↓</a></div>
+</div>
+
+<section id="main-screen">
+  <div class="sec-h"><h2>실행하면 이런 화면이 나와요</h2><small>MAIN SCREEN · 사용자/관리자 탭, 지도, 메뉴를 눌러 보세요</small></div>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span>localhost:8088/stats</span><em>실제 화면</em></div>
+    <div class="tabs" role="tablist"><button type="button" class="on" data-src="white-eyes-app/user/stats.html" data-url="localhost:8088/stats">사용자 앱</button><button type="button" data-src="white-eyes-app/admin/stats.html" data-url="localhost:8088/admin/stats">관리자 앱</button></div>
+    <iframe class="live-app" id="weFrame" src="white-eyes-app/user/stats.html" title="White Eyes 실제 화면" loading="eager"></iframe>
+  </div>
+  <p class="note">※ 실제 White Eyes(사용자 앱·관리자 앱)를 docker compose 로 실행해 가져온 화면입니다. 지도 이동·구역/캠 클릭·메뉴(통계, 이벤트 로그, 관리)를 눌러 볼 수 있어요. 인원 수치는 시연용 데이터이고 영상 분석은 실행하지 않아 캠 미리보기는 비어 있으며, 지도는 인터넷 연결이 필요합니다. 로그인·저장은 동작하지 않는 데모입니다.</p>
+</section>
+
+<section>
+  <div class="sec-h"><h2>구조</h2><small>ARCHITECTURE</small></div>
+  <div class="grid g3">
+    <div class="card"><span class="no">U</span><h3>사용자 앱 · Spring :8080</h3><p>통계를 보는 고객용. 지도·그래프·대시보드·히트맵·엑셀 내려받기. 사람이 찍힌 영상은 볼 수 없고 통계만 제공합니다.</p></div>
+    <div class="card"><span class="no">A</span><h3>관리자 앱 · Spring :8081</h3><p>구역 등록, 캠 관리, 실시간 분석 화면·다시보기, 혼잡·급증·캠 이상 이벤트 처리, 사용자 승인, 작업 기록.</p></div>
+    <div class="card"><span class="no">F</span><h3>분석 서버 · Flask :5000</h3><p>YOLOv8(VisDrone)으로 사람 탐지·추적, 유입/유출 판정, 체류 시간 계산. 결과를 1초마다 관리자 앱에 전송하고 영상은 1분 단위로 녹화.</p></div>
+  </div>
+  <p class="note">nginx 리버스 프록시 뒤에서 docker compose 로 함께 실행하고, 두 앱은 MySQL(Flyway 마이그레이션)을 사용합니다.</p>
+</section>
+
+<section>
+  <div class="sec-h"><h2>핵심 기능</h2><small>KEY FEATURES</small></div>
+  <div class="grid g3">
+    <div class="card"><span class="no">1</span><h3>지도 탐색</h3><p>시 → 구 → 동 → 구역 순으로 들어가는 지도. 혼잡 단계(정상·주의·위험)를 색으로 표시합니다.</p></div>
+    <div class="card"><span class="no">2</span><h3>통계 그래프</h3><p>기간·단위(1분~1년)별 그래프, 점을 눌러 한 단계씩 들어가기. 요일별 방문 패턴, 시간대별 히트맵, 구역 간 이동 흐름.</p></div>
+    <div class="card"><span class="no">3</span><h3>실시간 분석</h3><p>박스를 그린 실시간 스트림과 다시보기(원본 영상 위에 탐지 박스).</p></div>
+    <div class="card"><span class="no">4</span><h3>이벤트 알림</h3><p>혼잡·급증·캠 이상을 이벤트로 기록하고 확인 → 조치완료로 처리.</p></div>
+    <div class="card"><span class="no">5</span><h3>구역·캠 관리</h3><p>관리자가 지도에서 구역을 직접 그려 등록하고 캠을 가동·정지합니다.</p></div>
+    <div class="card"><span class="no">6</span><h3>팀 협업 프로세스</h3><p>명세 → 이슈 → PR 순서, dev 대상 PR·squash merge, CI 통과 후 승인.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>실제 구현 화면</h2><small>SCREENSHOTS</small></div>
+  <div class="shots">
+    <figure class="shot wide"><img src="img/we-user.png" alt="사용자 대시보드" loading="lazy"><figcaption>사용자 앱 — 대시보드(지도·구역별 인원·요약)</figcaption></figure>
+    <figure class="shot"><img src="img/we-admin.png" alt="관리자 대시보드" loading="lazy"><figcaption>관리자 앱 — 대시보드(캠별 카드)</figcaption></figure>
+    <figure class="shot"><img src="img/we-heatmap.png" alt="히트맵" loading="lazy"><figcaption>히트맵</figcaption></figure>
+    <figure class="shot"><img src="img/we-graph.png" alt="통계 그래프" loading="lazy"><figcaption>통계 그래프(시연용 데이터 포함)</figcaption></figure>
+  </div>
+</section>
+</div>
+</main>
+<footer><div class="wrap"><span>이윤호 · white-eyes 메인 페이지</span><span>화면은 로컬 docker compose 로 직접 캡처 · 분석 영상 원본은 싣지 않음</span></div></footer>
+
+<script>
+(function(){var f=document.getElementById("weFrame"),u=document.querySelector(".win-bar span");
+document.querySelectorAll(".tabs button").forEach(function(b){b.onclick=function(){document.querySelectorAll(".tabs button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");f.src=b.dataset.src;u.textContent=b.dataset.url}})})();
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nado-gam | 메인 페이지</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%236fe0b0'/%3E%3Ccircle cx='32' cy='32' r='16' fill='%23ff5a36' stroke='%2314120f' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.live-app{display:block;width:100%;height:900px;border:0;background:#f7f4ef}
+@media (max-width:860px){.live-app{height:1100px}}
+</style>
+</head>
+<body data-p="nado-gam">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="nado-gam.html"><i></i>nado-gam</a>
+  <ul>
+    <li><a href="nado-ham.html">nado-ham</a></li>
+    <li><a class="on" href="nado-gam.html">nado-gam</a></li>
+    <li><a href="obsidian-shield.html">obsidian-shield</a></li>
+    <li><a href="white-eyes.html">white-eyes</a></li>
+  </ul>
+</div></header>
+
+<main>
+<div class="wrap">
+<div class="hero">
+  <p class="eyebrow">2차 개인 프로젝트 · 2026.11</p>
+  <h1>어디로 <span class="hl">떠나볼까요?</span></h1>
+  <p class="lead">전 세계 100곳 사이로 비행기가 쉬지 않고 오가는 지구본이 첫 화면인 여행사 웹 서비스입니다. 해외 여행·국내 여행·투어·호텔·크루즈를 한 장바구니에 담고, 모의 결제 후 QR 탑승권으로 체크인까지 이어집니다.</p>
+  <ul class="chips"><li>Java 17</li><li>Spring Boot</li><li>Spring Security</li><li>JPA</li><li>MySQL / H2</li><li>Thymeleaf</li><li>globe.gl</li></ul>
+  <div class="cta"><a class="btn primary" href="https://github.com/ho8566z/nado-gam" target="_blank" rel="noopener">GitHub 보기 ↗</a><a class="btn" href="#main-screen">실행 화면 ↓</a></div>
+</div>
+
+<section id="main-screen">
+  <div class="sec-h"><h2>실행하면 이런 화면이 나와요</h2><small>MAIN SCREEN · 지구본을 끌어서 돌려 보세요</small></div>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span>localhost:8080/</span><em>실제 화면</em></div>
+    <iframe class="live-app" src="nado-gam-app/index.html" title="nado-gam 실제 메인 화면" loading="eager"></iframe>
+  </div>
+  <p class="note">※ 실제 nado-gam 프로그램을 실행해 가져온 메인 화면입니다(지구본·사진·캐러셀 모두 실제 코드). 링크는 데모라 이동하지 않아요. 지구본은 인터넷 연결이 필요합니다.</p>
+</section>
+
+<section>
+  <div class="sec-h"><h2>핵심 기능</h2><small>KEY FEATURES</small></div>
+  <div class="grid g3">
+    <div class="card"><span class="no">1</span><h3>지구본 메인 화면</h3><p>전 세계 도시 100곳 사이 무작위 경로 60개를 주황 선과 흐르는 불빛으로 표시. 끌어서 돌리면 관성으로 계속 회전합니다.</p></div>
+    <div class="card"><span class="no">2</span><h3>해외·국내 여행</h3><p>여행지 먼저 선택 → 그 여행지로 가는 항공편이 있는 출발지만 표시. 직항/경유 필터, 정렬 6종, 대륙·국가 필터, 도시 사진 카드.</p></div>
+    <div class="card"><span class="no">3</span><h3>투어·호텔·크루즈</h3><p>3테마(음식과 주류 / 스포츠와 액티비티 / 예술과 휴식) 투어, 박수별 옵션, 호텔·크루즈 객실까지 한 흐름으로 예약.</p></div>
+    <div class="card"><span class="no">4</span><h3>장바구니 · 모의 결제</h3><p>항공권·이동편·투어·호텔·크루즈를 담아 결제하면 항공권 남은 좌석을 조건부 UPDATE로 차감하고 예약(PAID)을 저장합니다.</p></div>
+    <div class="card"><span class="no">5</span><h3>QR 탑승권 · 체크인</h3><p>예약 확인·모바일 탑승권·체크인을 QR로. 관리자가 QR을 스캔해 체크인 처리합니다.</p></div>
+    <div class="card"><span class="no">6</span><h3>관리자 · 고객문의</h3><p>회원 정지/복구, 상품 노출 관리, 특별전·투어·호텔·항공편 CRUD(휴지통 복구), 팝업 이벤트, 고객문의 답변.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>규모</h2><small>NUMBERS</small></div>
+  <div class="stats"><div class="stat"><b>98</b><span>해외 여행지</span></div><div class="stat"><b>142</b><span>투어</span></div><div class="stat"><b>354</b><span>호텔</span></div><div class="stat"><b>169</b><span>테스트</span></div></div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>실제 구현 화면</h2><small>SCREENSHOTS</small></div>
+  <div class="shots">
+    <figure class="shot wide"><img src="img/ng-home.jpg" alt="메인 화면 지구본과 캐로셀" loading="lazy"><figcaption>메인 — 지구본 + 이달의 기획전 + 베스트셀러</figcaption></figure>
+    <figure class="shot"><img src="img/ng-travel.jpg" alt="해외 여행지 목록" loading="lazy"><figcaption>해외 여행 — 권역 탭·검색·정렬</figcaption></figure>
+    <figure class="shot"><img src="img/ng-tour.jpg" alt="투어 상세" loading="lazy"><figcaption>투어 상세 — 옵션 선택</figcaption></figure>
+    <figure class="shot"><img src="img/ng-domestic.jpg" alt="국내 여행" loading="lazy"><figcaption>국내 여행 — 버스·기차 이동편</figcaption></figure>
+  </div>
+</section>
+</div>
+</main>
+<footer><div class="wrap"><span>이윤호 · nado-gam 메인 페이지</span><span>사이트의 항공사·브랜드는 모두 가상입니다</span></div></footer>
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nado-ham | 메인 페이지</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23c9b6ff'/%3E%3Ccircle cx='32' cy='32' r='16' fill='%23ff5a36' stroke='%2314120f' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.live-app{display:block;width:100%;height:860px;border:0;background:#f4f5fa}
+@media (max-width:860px){.live-app{height:900px}}
+</style>
+</head>
+<body data-p="nado-ham">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="nado-ham.html"><i></i>nado-ham</a>
+  <ul>
+    <li><a class="on" href="nado-ham.html">nado-ham</a></li>
+    <li><a href="nado-gam.html">nado-gam</a></li>
+    <li><a href="obsidian-shield.html">obsidian-shield</a></li>
+    <li><a href="white-eyes.html">white-eyes</a></li>
+  </ul>
+</div></header>
+
+<main>
+<div class="wrap">
+<div class="hero">
+  <p class="eyebrow">1차 개인 프로젝트 · 2026.11</p>
+  <h1>일정을 기록하고,<br>다음 주를 <span class="hl">미리</span> 받아보세요</h1>
+  <p class="lead">일정을 등록해 두고도 다시 열어 보지 않으면 놓칩니다. 매주 일요일 21:00에 다음 주 일정을 텔레그램으로 보내고, 장기 목표를 오늘 할 수 있는 행동으로 바꿔 주는 개인 일정 관리 웹 서비스입니다.</p>
+  <ul class="chips"><li>Java 17</li><li>Spring Boot</li><li>Spring Security</li><li>JPA + MyBatis</li><li>MySQL</li><li>Thymeleaf</li><li>Telegram Bot API</li></ul>
+  <div class="cta"><a class="btn primary" href="https://github.com/ho8566z/nado-ham" target="_blank" rel="noopener">GitHub 보기 ↗</a><a class="btn" href="#main-screen">실행 화면 ↓</a></div>
+</div>
+
+<section id="main-screen">
+  <div class="sec-h"><h2>실행하면 이런 화면이 나와요</h2><small>MAIN SCREEN · planner / goal 탭을 눌러 보세요</small></div>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span>localhost:8090/planner</span><em>실제 화면</em></div>
+    <iframe class="live-app" src="nado-ham-app/planner.html" title="nado-ham 실제 화면" loading="eager"></iframe>
+  </div>
+  <p class="note">※ 실제 nado-ham 프로그램을 실행해 가져온 화면입니다(달력·목표 색 겹침·오늘 카드·주간 보기 모두 실제 코드). 위쪽 planner / goal 탭, 월 이동, 주간 보기, 월별 통계를 눌러 볼 수 있고, 일정은 데모라 저장되지 않아요. 일정·목표 내용은 예시입니다.</p>
+</section>
+
+<section>
+  <div class="sec-h"><h2>핵심 기능</h2><small>KEY FEATURES</small></div>
+  <div class="grid g3">
+    <div class="card"><span class="no">1</span><h3>주간 브리핑 (텔레그램)</h3><p>연동 코드로 봇과 계정을 연결하면 일요일 21:00에 다음 주(월~일) 일정을 날짜순으로 보냅니다. '지금 보내기', 수신 켜기/끄기 지원.</p></div>
+    <div class="card"><span class="no">2</span><h3>일정 관리 달력</h3><p>월간·주간 보기, 시작·종료 시간, 이미지 첨부, 제목·내용 검색, 월별 요일 통계. 목표 활동이 일정 위에 색으로 겹쳐 보입니다.</p></div>
+    <div class="card"><span class="no">3</span><h3>목표 실행 캘린더</h3><p>운동·공부·자기개발 과정을 고르면 가능한 요일·시간에 맞춰 첫 주 활동을 배치. 오늘 탭에서 완료 / 5분만 하기 / 다른 날로 옮기기.</p></div>
+    <div class="card"><span class="no">4</span><h3>알림과 주말 회고</h3><p>활동 시각에 텔레그램 알림(중복 방지·최대 3회 재시도). 한 주가 끝나면 "3회 중 2회 실천"을 보여주고 다음 주 계획을 조정.</p></div>
+    <div class="card"><span class="no">5</span><h3>보안</h3><p>CSRF 보호, 본인 일정만 접근(남의 번호는 404), 연속 5회 로그인 실패 시 10분 잠금, 이미지가 아닌 파일 업로드 거부.</p></div>
+    <div class="card"><span class="no">6</span><h3>회원·관리자·모바일</h3><p>가입 후 관리자 승인(PRE_USER → USER), 관리자 지표 화면, 768px 이하 접는 메뉴와 전체 화면 모달.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>규모</h2><small>NUMBERS</small></div>
+  <div class="stats"><div class="stat"><b>68</b><span>요구사항</span></div><div class="stat"><b>50</b><span>기능</span></div><div class="stat"><b>9</b><span>테이블</span></div><div class="stat"><b>477</b><span>테스트</span></div></div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>실제 구현 화면</h2><small>SCREENSHOTS</small></div>
+  <div class="shots">
+    <figure class="shot"><img src="img/nh-calendar.jpg" alt="월간 달력·검색·통계 화면" loading="lazy"><figcaption>월간 달력 · 검색 · 통계</figcaption></figure>
+    <figure class="shot"><img src="img/nh-goal.jpg" alt="목표 실행 화면" loading="lazy"><figcaption>목표 실행 · 오늘 카드</figcaption></figure>
+    <figure class="shot"><img src="img/nh-mobile.jpg" alt="모바일 화면" loading="lazy"><figcaption>모바일 (768px 이하)</figcaption></figure>
+  </div>
+</section>
+</div>
+</main>
+<footer><div class="wrap"><span>이윤호 · nado-ham 메인 페이지</span><span>자료 출처: 프로젝트 README·발표 PPT</span></div></footer>
+
+
+</body>
+</html>

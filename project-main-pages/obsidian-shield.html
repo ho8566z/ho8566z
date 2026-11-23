@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>obsidian-shield | 메인 페이지</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%239fd3ff'/%3E%3Ccircle cx='32' cy='32' r='16' fill='%23ff5a36' stroke='%2314120f' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.live-app{display:block;width:100%;height:880px;border:0;background:#060b16}
+@media (max-width:860px){.live-app{height:900px}}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0;padding:0;list-style:none}
+.flow li{border:var(--bd);background:var(--surface);border-radius:14px;padding:8px 16px;font-weight:800;box-shadow:3px 3px 0 var(--ink)}
+.flow li.a{background:var(--sky)}.flow li.b{background:var(--yellow)}.flow li.c{background:var(--mint)}.flow li.d{background:var(--pink)}
+.flow li.ar{border:0;background:none;box-shadow:none;padding:0 2px}
+</style>
+</head>
+<body data-p="obsidian">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="obsidian-shield.html"><i></i>obsidian-shield</a>
+  <ul>
+    <li><a href="nado-ham.html">nado-ham</a></li>
+    <li><a href="nado-gam.html">nado-gam</a></li>
+    <li><a class="on" href="obsidian-shield.html">obsidian-shield</a></li>
+    <li><a href="white-eyes.html">white-eyes</a></li>
+  </ul>
+</div></header>
+
+<main>
+<div class="wrap">
+<div class="hero">
+  <p class="eyebrow">1차 팀 프로젝트 · 딱코 · 2026.06.25 ~ 07.24</p>
+  <h1>사람을 찾고, <span class="hl">동선</span>을 그립니다</h1>
+  <p class="lead">드론·CCTV 영상에서 사람을 탐지(YOLO)하고, 같은 사람을 따라가며(BoT-SORT), 등록된 얼굴과 비교(InsightFace)해 실종자·수배자 같은 주의 인물이 발견되면 지도 위에 동선을 그려 알려주는 실시간 관제 시스템입니다.</p>
+  <ul class="chips"><li>Python 3.12</li><li>Flask</li><li>YOLOv8n</li><li>BoT-SORT</li><li>InsightFace</li><li>OpenCV</li><li>SSE</li><li>카카오맵 API</li></ul>
+  <div class="cta"><a class="btn primary" href="https://github.com/Kanabig/obsidian-shield" target="_blank" rel="noopener">GitHub 보기 ↗</a><a class="btn" href="#main-screen">실행 화면 ↓</a></div>
+</div>
+
+<section id="main-screen">
+  <div class="sec-h"><h2>실행하면 이런 화면이 나와요</h2><small>MAIN SCREEN · 왼쪽 메뉴를 눌러 보세요</small></div>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span>localhost:5000/dashboard</span><em>실제 화면</em></div>
+    <iframe class="live-app" src="obsidian-app/dashboard.html" title="Obsidian Shield 실제 대시보드" loading="eager"></iframe>
+  </div>
+  <p class="note">※ 실제 Obsidian Shield 프로그램을 실행해 가져온 화면입니다(대시보드·실시간·탐지 대상·카메라·지도·이벤트 로그·사용자 관리). 왼쪽 메뉴를 눌러 볼 수 있어요. 탐지 대상·이벤트는 시연용 가상 데이터이고, 개인이 식별되는 얼굴·영상은 쓰지 않았습니다. 지도는 인터넷 연결이 필요하며, AI 탐지·영상 스트림은 모델을 실행하지 않아 비어 있습니다.</p>
+</section>
+
+<section>
+  <div class="sec-h"><h2>탐지부터 알림까지</h2><small>PIPELINE</small></div>
+  <ul class="flow"><li>영상 입력</li><li class="ar">→</li><li class="a">YOLO 사람 탐지</li><li class="ar">→</li><li class="b">BoT-SORT 추적</li><li class="ar">→</li><li class="c">InsightFace 식별</li><li class="ar">→</li><li class="d">지도 표시 · 경고 · 로그</li></ul>
+  <p class="note">세 모델 모두 재학습 없이 사전 학습 가중치를 사용하고, 탐지 조건(conf 0.4, 사람만)·카메라별 추적기·유사도 기준 0.45만 조정했습니다.</p>
+</section>
+
+<section>
+  <div class="sec-h"><h2>핵심 기능</h2><small>KEY FEATURES</small></div>
+  <div class="grid g3">
+    <div class="card"><span class="no">1</span><h3>실시간 관제</h3><p>카메라(CCTV·드론) 등록·상태 확인·다중 전환. Flask 영상 스트리밍 위에 탐지 박스를 표시합니다.</p></div>
+    <div class="card"><span class="no">2</span><h3>탐지 대상 관리</h3><p>실종자·수배자 사진과 정보를 등록. 여러 장의 얼굴 특징을 평균 내어 저장해, 사진 몇 장만으로 바로 반영(Zero-delay)합니다.</p></div>
+    <div class="card"><span class="no">3</span><h3>이벤트·알림</h3><p>발견 시각·위치·캡처를 이벤트 로그로 저장하고 SSE로 실시간 알림. 읽음 처리, 엑셀 다운로드, 열람 기록(사용자 로그).</p></div>
+    <div class="card"><span class="no">4</span><h3>동선 지도</h3><p>카카오맵에 탐지 위치 마커와 사람별 이동 경로를 표시해 대상의 움직임을 한눈에 봅니다.</p></div>
+    <div class="card"><span class="no">5</span><h3>회원·보안</h3><p>관리자 승인 후 로그인, 관리자/관제자 권한 분리, CAPTCHA, 연속 3회 실패 시 계정 비활성화, 최초 로그인 시 비밀번호 변경.</p></div>
+    <div class="card"><span class="no">6</span><h3>경량형 설계</h3><p>가벼운 YOLOv8n으로 고성능 하드웨어 의존을 줄이고, 얼굴 인식을 비동기로 처리해 영상 지연을 줄였습니다.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>실제 구현 화면</h2><small>SCREENSHOTS</small></div>
+  <div class="shots">
+    <figure class="shot"><img src="img/os-login.png" alt="로그인 화면 설명" loading="lazy"><figcaption>로그인 · 회원가입</figcaption></figure>
+    <figure class="shot"><img src="img/os-arch.png" alt="시스템 구성도" loading="lazy"><figcaption>시스템 구성도</figcaption></figure>
+  </div>
+</section>
+</div>
+</main>
+<footer><div class="wrap"><span>이윤호 · obsidian-shield 메인 페이지</span><span>DW 아카데미 AIoT 드론 5회차 · 팀 딱코</span></div></footer>
+
+
+</body>
+</html>
