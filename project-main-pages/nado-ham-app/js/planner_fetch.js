@@ -1,0 +1,311 @@
+async function fetchWritePlan(year, month, date, title, body, startTime, endTime, file) {
+    console.log('fetchWritePlan() CALLED!!');
+
+    let formData = new FormData();
+    formData.append("year", year);
+    formData.append("month", month);
+    formData.append("date", date);
+    formData.append("title", title);
+    formData.append("body", body);
+    formData.append("start_time", startTime || '');       // 비어 있으면 시간 없음
+    formData.append("end_time", endTime || '');           // 비어 있으면 종료 시간 없음(시작 시간이 있어야 함)
+    if (file) {
+        formData.append("file", file);
+    }
+
+    try {
+        let response = await fetch('/planner/plan', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('fetchWritePlan() COMMUNICATION SUCCESS!! ');
+
+        let data = await response.json();
+        console.log('data: ', data);
+
+        if (!data || data.result <= 0) {
+            alert("일정 등록에 문제가 발생 했습니다.");
+
+        } else {
+            alert("일정이 정상적으로 등록 되었습니다.");
+            removeCalenderTr();     // 기존 달력(<tr>) 제거
+            addCalenderTr();        // 새 달력(<tr>) 생성
+            fetchGetCurrentMonthPlans(); // 일정들 가져오는 함수
+            refreshSearchResult();
+
+        }
+
+
+    } catch (error) {
+        console.log('fetchWritePlan() COMMUNICATION ERROR!! ', error);
+        alert('일정 등록에 문제가 발생 했습니다.');
+
+    } finally {
+        hideWritePlanView();
+
+    }
+
+}
+
+async function fetchGetCurrentMonthPlans() {
+    console.log('fetchGetCurrentMonthPlans() CALLED!!');
+
+    let requestedYear = current_year;
+    let requestedMonth = current_month;
+
+    let reqData = {
+        "year": current_year,
+        "month": current_month + 1
+    }
+
+    let queryString = new URLSearchParams(reqData).toString();
+    console.log("queryString: ", queryString);
+
+    try {
+        let response = await fetch(`/planner/plans?${queryString}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('fetchGetCurrentMonthPlans() COMMUNICATION SUCCESS!! ');
+
+        let data = await response.json();
+        console.log('data: ', data);
+
+        // 주간 보기를 켜 둔 상태에서 일정을 고치거나 지웠다면 주간 화면도 새로 그린다
+        if (typeof refreshWeekView === 'function') {
+            refreshWeekView();
+        }
+
+        // 달을 빠르게 넘기면 이전 달의 응답이 늦게 도착할 수 있다. 지금 보는 달의 응답이 아니면 버린다.
+        if (requestedYear !== current_year || requestedMonth !== current_month) {
+            return;
+        }
+
+        let plans = data.plans;
+        month_plans = plans;
+        plans.forEach(dto => {
+            let targetElement = document.querySelector(`#date_${dto.date} ul.plan`);
+            if (targetElement) {
+                // 모바일 폭에서는 제목 대신 개수만 보여 준다(CSS 가 data-count 를 읽는다)
+                let wrap = targetElement.parentElement;
+                wrap.dataset.count = String((parseInt(wrap.dataset.count || '0', 10)) + 1);
+
+                // 시작 시간이 있으면 제목 앞에 'HH:mm '을 붙인다. 제목은 textContent로 넣어 HTML로 해석되지 않게 한다.
+                let li = document.createElement('li');
+                let link = document.createElement('a');
+                link.className = 'title';
+                link.href = '#none';
+                link.dataset.no = dto.no;
+                link.textContent = planTimeLabel(dto) + dto.title;
+                li.appendChild(link);
+                targetElement.appendChild(li);
+            }
+
+        });
+
+        // 모바일에서 선택해 둔 날짜의 일정 목록을 새 데이터로 다시 그린다
+        renderDayList();
+
+        // 목표 활동을 일정 칩 뒤에 겹쳐 보여 준다(읽기 전용)
+        fetchGetCurrentMonthGoals(requestedYear, requestedMonth);
+
+    } catch (error) {
+        console.log('fetchGetCurrentMonthPlans() COMMUNICATION ERROR!! ', error);
+
+    }
+
+}
+
+// 일정 검색(본인 일정만). 응답이 늦게 와도 가장 최근에 요청한 검색의 결과만 보여 준다.
+async function fetchSearchPlans(keyword) {
+    console.log('fetchSearchPlans() CALLED!!');
+
+    last_search_keyword = keyword;
+    let seq = ++search_seq;
+
+    let queryString = new URLSearchParams({"keyword": keyword}).toString();
+
+    try {
+        let response = await fetch(`/planner/plans/search?${queryString}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('fetchSearchPlans() COMMUNICATION SUCCESS!! ');
+
+        let data = await response.json();
+
+        if (seq !== search_seq) {
+            return;     // 더 최근에 요청한 검색이 있다
+        }
+
+        showSearchResult(data.plans, data.limit);
+
+    } catch (error) {
+        console.log('fetchSearchPlans() COMMUNICATION ERROR!! ', error);
+
+        if (seq === search_seq) {
+            document.querySelector('#search_result ul.search_list').innerHTML = '';
+            document.querySelector('#search_result .search_msg').textContent = '검색에 문제가 발생했습니다.';
+        }
+
+    }
+
+}
+
+// 검색 결과가 떠 있으면 같은 검색어로 다시 불러온다(일정을 등록·수정·삭제한 뒤 목록이 낡지 않게)
+function refreshSearchResult() {
+    if (last_search_keyword !== '') {
+        fetchSearchPlans(last_search_keyword);
+    }
+
+}
+
+async function fetchGetPlan(no) {
+    console.log("fetchGetPlan() CALLED!!");
+
+    let queryString = new URLSearchParams({"no": no}).toString();
+    console.log("queryString: ", queryString);
+
+    try {
+        let response = await fetch(`/planner/plan?${queryString}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('fetchGetPlan() COMMUNICATION SUCCESS!! ');
+
+        let data = await response.json();
+        console.log('data: ', data);
+
+        let plan = data.plan;
+        showDetailPlanView(plan);
+
+    } catch (error) {
+        console.log('fetchGetPlan() COMMUNICATION ERROR!! ', error);
+
+    }
+
+}
+
+async function fetchRemovePlan(no) {
+    console.log('fetchRemovePlan() CALLED!!');
+
+    try {
+        let response = await fetch(`/planner/plan/${no}`, {   // /planner/plan/2
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('fetchRemovePlan() COMMUNICATION SUCCESS!! ');
+
+        let data = await response.json();
+        console.log('data: ', data);
+
+        if (data.result > 0) {
+            alert("일정이 정상적으로 삭제 되었습니다.");
+
+            removeCalenderTr();
+            addCalenderTr();
+            fetchGetCurrentMonthPlans();
+            refreshSearchResult();
+
+        } else {
+            alert("일정이 정상적으로 삭제 되지 않았습니다.");
+
+        }
+
+    } catch (error) {
+        console.log('fetchRemovePlan() COMMUNICATION ERROR!! ', error);
+
+    } finally {
+        hideDetailPlanView();
+
+    }
+
+}
+
+async function fetchModifyPlan(no, year, month, date, title, body, startTime, endTime, file) {
+    console.log('fetchModifyPlan() CALLED!!');
+
+    let formData = new FormData();
+    formData.append('year', year);
+    formData.append('month', month);
+    formData.append('date', date);
+    formData.append('title', title);
+    formData.append('body', body);
+    formData.append('start_time', startTime || '');         // 비우면 서버가 시간을 지운다
+    formData.append('end_time', endTime || '');             // 비우면 종료 시간을 지운다
+
+    if (file != null || file != undefined) {
+        formData.append('file', file);
+    }
+
+    try {
+        let response = await fetch(`/planner/plan/${no}`, {   // /planner/plan/2
+            method: 'PUT',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('fetchModifyPlan() COMMUNICATION SUCCESS!! ');
+
+        let data = await response.json();
+        console.log('data: ', data);
+
+        if (!data || data.result <= 0) {
+            alert('일정 수정에 문제가 발생했습니다.');
+
+        } else {
+            alert('일정이 정상적으로 수정 되었습니다.');
+
+        }
+
+        removeCalenderTr();
+        addCalenderTr();
+        fetchGetCurrentMonthPlans();
+        refreshSearchResult();
+
+    } catch (error) {
+        console.log('fetchModifyPlan() COMMUNICATION ERROR!! ', error);
+        alert('일정 수정에 문제가 발생했습니다.');
+
+    } finally {
+        hideDetailPlanView();
+
+    }
+
+}

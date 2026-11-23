@@ -1,0 +1,466 @@
+section {
+    width: 100%;
+    padding: 28px 0 10px;
+}
+
+#section_wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+#section_wrap .content {
+    text-align: left;
+}
+
+#section_wrap .message {
+    min-height: 1.4em;
+    margin: 0 0 12px;
+    text-align: center;
+}
+
+#section_wrap .message.error {
+    color: #c0392b;
+}
+
+.course_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: left;
+    cursor: pointer;
+}
+
+.course.selected {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.25);
+}
+
+.course .theme,
+.course .goal_text {
+    font-size: 13px;
+    opacity: 0.75;
+}
+
+.condition_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.condition_form[hidden],
+.preview[hidden] {
+    display: none;
+}
+
+.condition_form fieldset label {
+    margin-right: 10px;
+}
+
+.preview ul {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+}
+
+.preview li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.preview li.conflict {
+    border-color: #e67e22;
+}
+
+.preview .guide,
+.preview .warn {
+    flex-basis: 100%;
+    font-size: 14px;
+}
+
+.preview .warn {
+    color: #d35400;
+}
+
+.goal_card {
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.goal_card.paused {
+    opacity: 0.8;
+    border-style: dashed;
+}
+
+.goal_card .goal_actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.goal_card .goal_actions button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.goal_card .checkpoint {
+    display: block;
+    margin: 2px 0 6px;
+    font-size: 13px;
+    opacity: 0.75;
+}
+
+.goal_card .settings_form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    border-top: 1px dashed var(--line);
+}
+
+.goal_card .settings_form button {
+    align-self: flex-start;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.goal_card .settings_hint {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.goal_card .goal_note {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.goal_card .period {
+    display: block;
+    margin: 2px 0 6px;
+    font-size: 13px;
+    opacity: 0.75;
+}
+
+.goal_card ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.tabs .tab {
+    flex: 1;
+    padding: 10px 0;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.tabs .tab.selected {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.25);
+    font-weight: bold;
+}
+
+.tab_panel[hidden],
+#missed_wrap[hidden],
+.today_card .extra[hidden],
+.next_info[hidden] {
+    display: none;
+}
+
+.today_date {
+    margin: 0 0 8px;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+.hint {
+    margin: 0 0 8px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.card_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.today_card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.today_card.missed {
+    border-color: #e67e22;
+}
+
+.today_card.finished {
+    opacity: 0.75;
+}
+
+.today_card .when,
+.today_card .progress {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.today_card .guide {
+    margin: 0;
+}
+
+.today_card .done_label {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.today_card .buttons,
+.today_card .extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.today_card .extra {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border-top: 1px dashed var(--line);
+}
+
+.today_card .extra p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.today_card button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.today_card button.conflict {
+    border-color: #e67e22;
+}
+
+.today_card button.quiet {
+    opacity: 0.7;
+}
+
+.today_card button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.next_info {
+    padding: 12px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.link_button {
+    padding: 0;
+    background: none;
+    border: 0;
+    color: #6c5ce7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.retro_card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    background-color: var(--surface);
+    border: 1px solid #6c5ce7;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.retro_card .stats {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.retro_card .retro_form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.retro_card .retro_form fieldset label {
+    margin-right: 10px;
+}
+
+.retro_card .retro_preview[hidden],
+.retro_card .retro_form[hidden] {
+    display: none;
+}
+
+.retro_card .retro_preview ul {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+}
+
+.retro_card .retro_preview li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.retro_card .retro_preview li.conflict {
+    border-color: #e67e22;
+}
+
+.retro_card .retro_preview .guide,
+.retro_card .retro_preview .warn {
+    flex-basis: 100%;
+    font-size: 14px;
+}
+
+.retro_card .retro_preview .warn {
+    color: #d35400;
+}
+
+.retro_card button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* 공통 input 규칙(폭 320px)이 체크박스에 적용돼 요일 선택이 흩어지지 않게 한다 */
+.condition_form input[type='checkbox'],
+.retro_card input[type='checkbox'] {
+    width: auto;
+    margin: 0 4px 0 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    #section_wrap {
+        padding: 0 12px;
+    }
+
+    .today_card .buttons button {
+        flex: 1 1 auto;
+        min-height: 40px;
+    }
+}
+
+/* 과정 묶음(테마별), 기간·수준 선택, 계획 요약, 월별 중간 목표 */
+[hidden] {
+    display: none !important;
+}
+
+.theme_heading {
+    margin: 14px 0 6px;
+    font-size: 15px;
+}
+
+.course_group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.course.personal {
+    border-style: dashed;
+}
+
+.plan_summary {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.plan_summary p {
+    margin: 4px 0;
+}
+
+.summary_head {
+    font-weight: 700;
+}
+
+.summary_note {
+    color: #b9770e;
+    font-size: 14px;
+}
+
+.milestones {
+    margin: 6px 0;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+.milestones li.current {
+    font-weight: 700;
+    color: #6c5ce7;
+}
+
+.milestones li.done {
+    opacity: 0.6;
+}
+
+.goal_card .month_goal {
+    display: block;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.preview .slot_title {
+    min-width: 180px;
+}
