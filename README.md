@@ -99,7 +99,7 @@
   ### ✅ 테스트
   - **기능별 테스트 작성**: 오류 응답, 로그인, 권한 검사, 작업 기록, 엑셀 등 구현한 기능마다 검수 기준 테스트를 함께 작성 (test → feat 순서로 진행)  
 
-👉 [프로젝트 소개 Repo](https://github.com/white-eyes1/white-eyes-introduce) · [프로젝트 코드 Repo](https://github.com/white-eyes1/white-eyes-spring) · [프로젝트 분석 Repo](https://github.com/white-eyes1/white-eyes-flask) · [문서 Repo](https://github.com/white-eyes1/white-eyes-docs) · [Notion](https://app.notion.com/p/41400b1cd77d8003b89edf0efe261379)
+👉 [실행 화면](https://ho8566z.github.io/yunho-portfolio-2611/projects/white-eyes.html) · [프로젝트 소개 Repo](https://github.com/white-eyes1/white-eyes-introduce) · [프로젝트 코드 Repo](https://github.com/white-eyes1/white-eyes-spring) · [프로젝트 분석 Repo](https://github.com/white-eyes1/white-eyes-flask) · [문서 Repo](https://github.com/white-eyes1/white-eyes-docs) · [Notion](https://app.notion.com/p/41400b1cd77d8003b89edf0efe261379)
 
 ---
 
@@ -149,7 +149,7 @@
   - **SSE 연결 중복(502)**: 페이지마다 연결이 새로 생겨 알림음·토스트가 중복되던 문제 → 연결 객체를 보관해 이미 있으면 새로 만들지 않고, 오류 시 닫고 초기화해 재연결  
   - **키 불일치(503)**: 이미지 조회 시 KeyError → 키 상수를 JSON에 저장된 실제 키(IMG_ROOT)와 일치시킴  
 
-👉 [프로젝트 Repo](https://github.com/Kanabig/obsidian-shield) · [Notion](https://app.notion.com/p/41400b1cd77d800fb83bcc3a81c240c1)
+👉 [실행 화면](https://ho8566z.github.io/yunho-portfolio-2611/projects/obsidian-shield.html) · [프로젝트 Repo](https://github.com/Kanabig/obsidian-shield) · [Notion](https://app.notion.com/p/41400b1cd77d800fb83bcc3a81c240c1)
 
 ---
 
@@ -187,7 +187,7 @@
   - **트러블슈팅**: 10건 기록 (Thymeleaf 조각의 빈 호출 금지, 성공 알림이 오류처럼 보이던 색 충돌, 동시 결제 좌석 초과 방지 등)  
   - **문서**: 명세서(엑셀 13시트: 요구 88·기능 48·API 56·테이블 25)·설계서·ERD·발표 자료(PPT 32장)·노션 정리  
 
-👉 [프로젝트 Repo](https://github.com/ho8566z/nado-gam) · [문서 Repo](https://github.com/ho8566z/nado-gam_word) · [Notion](https://app.notion.com/p/41f00b1cd77d8020a023e67adbd29f95)
+👉 [실행 화면](https://ho8566z.github.io/yunho-portfolio-2611/projects/nado-gam.html) · [프로젝트 Repo](https://github.com/ho8566z/nado-gam) · [문서 Repo](https://github.com/ho8566z/nado-gam_word) · [Notion](https://app.notion.com/p/41f00b1cd77d8020a023e67adbd29f95)
 
 ---
 
@@ -227,7 +227,7 @@
   - **트러블슈팅**: 29건 기록 (평문 비밀번호 커밋, 일정 소유자 검증 누락, 요청 폼 값 신뢰, 리눅스 MySQL 테이블명 대소문자, 달 이동 시 응답 순서 꼬임 등), 미해결 항목은 한계로 문서에 명시  
   - **문서**: README, 명세서 엑셀, 발표 자료(PPT) 작성  
 
-👉 [프로젝트 Repo](https://github.com/ho8566z/nado-ham) · [문서 Repo](https://github.com/ho8566z/nado-ham_word) · [Notion](https://app.notion.com/p/41400b1cd77d80a1a8faf9bc78e7d37d)
+👉 [실행 화면](https://ho8566z.github.io/yunho-portfolio-2611/projects/nado-ham.html) · [프로젝트 Repo](https://github.com/ho8566z/nado-ham) · [문서 Repo](https://github.com/ho8566z/nado-ham_word) · [Notion](https://app.notion.com/p/41400b1cd77d80a1a8faf9bc78e7d37d)
 
 ---
 
