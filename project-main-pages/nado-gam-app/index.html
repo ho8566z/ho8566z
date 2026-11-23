@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>나도 감 | nado-gam</title>
+
+	<meta name="description" content="나도 감(nado-gam) — 가고 싶은 여행지를 고르면 항공권·투어·호텔·크루즈를 한 번에 고르는 여행 서비스(포트폴리오용 가상 서비스)">
+
+	<meta name="theme-color" content="#ff5a36">
+
+	<meta property="og:site_name" content="나도 감 nado-gam">
+
+	<meta property="og:type" content="website">
+
+	<meta property="og:title" content="나도 감 | nado-gam">
+
+	<meta property="og:description" content="가고 싶은 여행지를 고르면 항공권·투어·호텔·크루즈를 한 번에.">
+
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff5a36'/%3E%3Cpath d='M12 38l40-18-12 30-10-9-8 7 1-11z' fill='%23fff'/%3E%3C/svg%3E">
+
+	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+	<link rel="stylesheet" href="css/main.css">
+
+	<link rel="stylesheet" href="css/travel.css">
+
+	<link rel="stylesheet" href="css/auth.css">
+
+	<link rel="stylesheet" href="css/mascot.css">
+
+	<link rel="stylesheet" href="css/popup.css">
+
+	<link rel="stylesheet" href="css/tour.css">
+
+	<script defer src="js/common.js"></script>
+
+</head>
+
+<body class="home">
+
+<header class="site-header">
+
+	<a class="logo" href="" data-transition>
+
+		<span>nado-gam</span>
+
+	</a>
+
+	<nav aria-label="주 메뉴">
+
+		<a href="" class="is-active">홈</a>
+
+		<a href="special">이달의 특별전</a>
+
+		<a href="bestseller">베스트셀러</a>
+
+		<a href="tour">투어</a>
+
+		<a href="travel">해외여행</a>
+
+		<a href="domestic">국내여행</a>
+
+		<!-- 로그인하면 '계정' 자리가 'user님'(계정 화면 링크, 관리자는 관리자 화면)으로 바뀐다 -->
+
+		<a href="account">계정</a>
+
+		
+
+		<a href="support">고객문의</a>
+
+		<span class="auth-links">
+
+			
+
+				<a href="login">로그인</a>
+
+				<a href="signup">회원가입</a>
+
+			
+
+			
+
+		</span>
+
+	</nav>
+
+</header>
+
+
+
+<main class="page">
+
+
+
+<div class="home-split">
+
+
+
+	<!-- 왼쪽: 돌아가는 지구본과 비행기 -->
+
+	<section class="hero" aria-labelledby="hero-title">
+
+		<div class="hero-copy">
+
+			<p class="eyebrow">나도 감 · 항공권 전문 여행사</p>
+
+			<h1 id="hero-title">어디로 떠나볼까요?</h1>
+
+			<p class="hero-lead">전 세계 주요 도시 100곳 사이로 비행기가 쉬지 않고 오갑니다.</p>
+
+		</div>
+
+		<div class="globe-wrap">
+
+			<div id="globe" class="globe" role="img" aria-label="전 세계 주요 도시 100곳 사이를 비행기가 오가는 지구본"></div>
+
+			<noscript><p class="globe-note">지구본을 보려면 자바스크립트가 필요합니다.</p></noscript>
+
+		</div>
+
+		<p class="hero-hint"><span class="dot dot--blue"></span> 주요 도시 100곳 · 지구본을 끌어서 돌려볼 수 있어요</p>
+
+	</section>
+
+
+
+	<!-- 오른쪽: 이달의 기획전·베스트셀러 캐로셀(좁은 화면에서는 지구본 아래로 쌓인다) -->
+
+	<div class="home-shelves">
+
+
+
+	<!-- 이달의 기획전 3개 캐로셀 -->
+
+	<section class="shelf" id="plans" aria-labelledby="plans-title">
+
+		<div class="shelf-head">
+
+			<div>
+
+				<span class="kicker">THIS MONTH</span>
+
+				<h2 id="plans-title">이달의 기획전</h2>
+
+			</div>
+
+			<a class="more" href="special" data-transition>전체 보기 →</a>
+
+		</div>
+
+		<div class="carousel" data-carousel data-autoplay="6500" aria-roledescription="carousel" aria-label="이달의 기획전">
+
+			<div class="viewport">
+
+				<div class="track">
+
+					<div class="slide" role="group" aria-roledescription="slide">
+
+						<a class="poster poster--plan" data-transition
+
+   href="special/1"
+
+   style="--c1:#b5382d;--c2:#f2a65a;--photo:url(../img/dest/overseas-5.jpg)" aria-label="로마 로마의 휴일, 지금 떠나요">
+
+	<span class="poster-bgtext" aria-hidden="true">ROME</span>
+
+	<svg class="poster-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+
+	<div class="poster-body">
+
+		<div class="poster-tags">
+
+			<span class="badge badge--hot">최대 33% OFF</span>
+
+			<span class="badge badge--ghost">마감 D-38</span>
+
+		</div>
+
+		<p class="poster-kicker"><span>로마</span> · <span>Rome</span></p>
+
+		<h3 class="poster-title">로마의 휴일, 지금 떠나요</h3>
+
+		<p class="poster-sub">인천→로마 항공권 최대 33% 겨울 특가</p>
+
+		
+
+	
+
+		
+
+	<p class="spot">
+
+		<span class="spot-item"><span class="spot-tag">명소</span><span>콜로세움</span></span>
+
+		<span class="spot-item"><span class="spot-tag spot-tag--food">특산</span><span>젤라토·카르보나라</span></span>
+
+	</p>
+
+
+
+	
+
+
+
+		<ul class="chips">
+
+			<li>콜로세움·바티칸을 하루에</li>
+
+			<li>젤라토와 파스타의 본고장</li>
+
+			<li>유럽 겨울 비수기, 한적한 시즌</li>
+
+		</ul>
+
+	</div>
+
+	<div class="poster-side">
+
+		<span class="price-old">₩720,000</span>
+
+		<strong class="price-now"><span>₩490,000</span><small>~</small></strong>
+
+		<span class="price-note">편도 · 성인 1인 · 항공편 <span>3</span>편</span>
+
+		<span class="cta">기획전 보기 <i aria-hidden="true">→</i></span>
+
+	</div>
+
+</a>
+
+					</div>
+
+					<div class="slide" role="group" aria-roledescription="slide">
+
+						<a class="poster poster--plan" data-transition
+
+   href="special/2"
+
+   style="--c1:#2f6fed;--c2:#9fd6ff;--photo:url(../img/dest/overseas-12.jpg)" aria-label="삿포로 설국 삿포로, 눈부신 겨울 특가">
+
+	<span class="poster-bgtext" aria-hidden="true">SAPPORO</span>
+
+	<svg class="poster-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+
+	<div class="poster-body">
+
+		<div class="poster-tags">
+
+			<span class="badge badge--hot">최대 25% OFF</span>
+
+			<span class="badge badge--ghost">마감 D-38</span>
+
+		</div>
+
+		<p class="poster-kicker"><span>삿포로</span> · <span>Sapporo</span></p>
+
+		<h3 class="poster-title">설국 삿포로, 눈부신 겨울 특가</h3>
+
+		<p class="poster-sub">홋카이도 직항·경유 최대 25% 특가</p>
+
+		
+
+	
+
+		
+
+	<p class="spot">
+
+		<span class="spot-item"><span class="spot-tag">명소</span><span>삿포로 시계탑</span></span>
+
+		<span class="spot-item"><span class="spot-tag spot-tag--food">특산</span><span>징기스칸·맥주</span></span>
+
+	</p>
+
+
+
+	
+
+
+
+		<ul class="chips">
+
+			<li>인천→삿포로 직항 2시간 40분</li>
+
+			<li>눈 축제와 온천, 라멘과 징기스칸</li>
+
+			<li>가까운 겨울 여행지 1순위</li>
+
+		</ul>
+
+	</div>
+
+	<div class="poster-side">
+
+		<span class="price-old">₩210,000</span>
+
+		<strong class="price-now"><span>₩159,000</span><small>~</small></strong>
+
+		<span class="price-note">편도 · 성인 1인 · 항공편 <span>3</span>편</span>
+
+		<span class="cta">기획전 보기 <i aria-hidden="true">→</i></span>
+
+	</div>
+
+</a>
+
+					</div>
+
+					<div class="slide" role="group" aria-roledescription="slide">
+
+						<a class="poster poster--plan" data-transition
+
+   href="special/3"
+
+   style="--c1:#0f766e;--c2:#f59e0b;--photo:url(../img/dest/overseas-27.jpg)" aria-label="케이프타운 아프리카 남단, 케이프타운으로">
+
+	<span class="poster-bgtext" aria-hidden="true">CAPE TOWN</span>
+
+	<svg class="poster-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+
+	<div class="poster-body">
+
+		<div class="poster-tags">
+
+			<span class="badge badge--hot">최대 26% OFF</span>
+
+			<span class="badge badge--ghost">마감 D-38</span>
+
+		</div>
+
+		<p class="poster-kicker"><span>케이프타운</span> · <span>Cape Town</span></p>
+
+		<h3 class="poster-title">아프리카 남단, 케이프타운으로</h3>
+
+		<p class="poster-sub">희망봉을 향한 경유 항공권 최대 26% 특가</p>
+
+		
+
+	
+
+		
+
+	<p class="spot">
+
+		<span class="spot-item"><span class="spot-tag">명소</span><span>테이블 마운틴</span></span>
+
+		<span class="spot-item"><span class="spot-tag spot-tag--food">특산</span><span>와인·비톡</span></span>
+
+	</p>
+
+
+
+	
+
+
+
+		<ul class="chips">
+
+			<li>테이블마운틴과 희망봉</li>
+
+			<li>펭귄이 사는 볼더스 비치</li>
+
+			<li>와이너리 투어까지 한 번에</li>
+
+		</ul>
+
+	</div>
+
+	<div class="poster-side">
+
+		<span class="price-old">₩1,250,000</span>
+
+		<strong class="price-now"><span>₩920,000</span><small>~</small></strong>
+
+		<span class="price-note">편도 · 성인 1인 · 항공편 <span>3</span>편</span>
+
+		<span class="cta">기획전 보기 <i aria-hidden="true">→</i></span>
+
+	</div>
+
+</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<button class="nav nav--prev" type="button" aria-label="이전 기획전">‹</button>
+
+			<button class="nav nav--next" type="button" aria-label="다음 기획전">›</button>
+
+			<div class="dots" role="tablist" aria-label="기획전 선택"></div>
+
+		</div>
+
+		
+
+	</section>
+
+
+
+	<!-- 베스트셀러 3개 캐로셀 -->
+
+	<section class="shelf" id="bestsellers" aria-labelledby="best-title">
+
+		<div class="shelf-head">
+
+			<div>
+
+				<span class="kicker">BEST SELLER</span>
+
+				<h2 id="best-title">베스트셀러</h2>
+
+			</div>
+
+			<a class="more" href="bestseller" data-transition>전체 보기 →</a>
+
+		</div>
+
+		<div class="carousel" data-carousel data-autoplay="7500" aria-roledescription="carousel" aria-label="베스트셀러">
+
+			<div class="viewport">
+
+				<div class="track">
+
+					<div class="slide" role="group" aria-roledescription="slide">
+
+						<a class="poster poster--best" data-transition
+
+   href="bestseller/9"
+
+   style="--c1:#be123c;--c2:#fb7185;--photo:url(../img/dest/overseas-9.jpg)" aria-label="1위 도쿄">
+
+	<span class="poster-bgtext" aria-hidden="true">TOKYO</span>
+
+	<span class="poster-rank" aria-hidden="true">1</span>
+
+	<div class="poster-body">
+
+		<div class="poster-tags">
+
+			<span class="badge badge--best"><span>BEST 1위</span></span>
+
+			<span class="badge badge--ghost">누적 판매 <span>4,240</span>건</span>
+
+		</div>
+
+		<p class="poster-kicker">Tokyo</p>
+
+		<h3 class="poster-title">도쿄</h3>
+
+		<p class="poster-sub">쇼핑과 미식, 전통이 가득한 일본의 수도</p>
+
+		
+
+	
+
+		
+
+	<p class="spot">
+
+		<span class="spot-item"><span class="spot-tag">명소</span><span>도쿄 타워</span></span>
+
+		<span class="spot-item"><span class="spot-tag spot-tag--food">특산</span><span>스시·라멘</span></span>
+
+	</p>
+
+
+
+	
+
+
+
+	</div>
+
+	<div class="poster-side">
+
+		<span class="price-note">일반석 최저가</span>
+
+		<strong class="price-now"><span>₩150,000</span><small>~</small></strong>
+
+		<span class="price-note">편도 · 성인 1인 · 인기 항공편 <span>5</span>편</span>
+
+		<span class="cta">항공편 보기 <i aria-hidden="true">→</i></span>
+
+	</div>
+
+</a>
+
+					</div>
+
+					<div class="slide" role="group" aria-roledescription="slide">
+
+						<a class="poster poster--best" data-transition
+
+   href="bestseller/18"
+
+   style="--c1:#7c3aed;--c2:#f97316;--photo:url(../img/dest/overseas-18.jpg)" aria-label="2위 로스앤젤레스">
+
+	<span class="poster-bgtext" aria-hidden="true">LOS ANGELES</span>
+
+	<span class="poster-rank" aria-hidden="true">2</span>
+
+	<div class="poster-body">
+
+		<div class="poster-tags">
+
+			<span class="badge badge--best"><span>BEST 2위</span></span>
+
+			<span class="badge badge--ghost">누적 판매 <span>2,450</span>건</span>
+
+		</div>
+
+		<p class="poster-kicker">Los Angeles</p>
+
+		<h3 class="poster-title">로스앤젤레스</h3>
+
+		<p class="poster-sub">할리우드와 해변, 캘리포니아의 햇살</p>
+
+		
+
+	
+
+		
+
+	<p class="spot">
+
+		<span class="spot-item"><span class="spot-tag">명소</span><span>할리우드 사인</span></span>
+
+		<span class="spot-item"><span class="spot-tag spot-tag--food">특산</span><span>인앤아웃 버거</span></span>
+
+	</p>
+
+
+
+	
+
+
+
+	</div>
+
+	<div class="poster-side">
+
+		<span class="price-note">일반석 최저가</span>
+
+		<strong class="price-now"><span>₩820,000</span><small>~</small></strong>
+
+		<span class="price-note">편도 · 성인 1인 · 인기 항공편 <span>3</span>편</span>
+
+		<span class="cta">항공편 보기 <i aria-hidden="true">→</i></span>
+
+	</div>
+
+</a>
+
+					</div>
+
+					<div class="slide" role="group" aria-roledescription="slide">
+
+						<a class="poster poster--best" data-transition
+
+   href="bestseller/19"
+
+   style="--c1:#0e7490;--c2:#db2777;--photo:url(../img/dest/overseas-19.jpg)" aria-label="3위 홍콩">
+
+	<span class="poster-bgtext" aria-hidden="true">HONG KONG</span>
+
+	<span class="poster-rank" aria-hidden="true">3</span>
+
+	<div class="poster-body">
+
+		<div class="poster-tags">
+
+			<span class="badge badge--best"><span>BEST 3위</span></span>
+
+			<span class="badge badge--ghost">누적 판매 <span>2,260</span>건</span>
+
+		</div>
+
+		<p class="poster-kicker">Hong Kong</p>
+
+		<h3 class="poster-title">홍콩</h3>
+
+		<p class="poster-sub">야경과 딤섬, 동서양이 섞인 도시</p>
+
+		
+
+	
+
+		
+
+	<p class="spot">
+
+		<span class="spot-item"><span class="spot-tag">명소</span><span>빅토리아 하버</span></span>
+
+		<span class="spot-item"><span class="spot-tag spot-tag--food">특산</span><span>딤섬</span></span>
+
+	</p>
+
+
+
+	
+
+
+
+	</div>
+
+	<div class="poster-side">
+
+		<span class="price-note">일반석 최저가</span>
+
+		<strong class="price-now"><span>₩290,000</span><small>~</small></strong>
+
+		<span class="price-note">편도 · 성인 1인 · 인기 항공편 <span>3</span>편</span>
+
+		<span class="cta">항공편 보기 <i aria-hidden="true">→</i></span>
+
+	</div>
+
+</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<button class="nav nav--prev" type="button" aria-label="이전 베스트셀러">‹</button>
+
+			<button class="nav nav--next" type="button" aria-label="다음 베스트셀러">›</button>
+
+			<div class="dots" role="tablist" aria-label="베스트셀러 선택"></div>
+
+		</div>
+
+		
+
+	</section>
+
+
+
+	</div>
+
+
+
+</div>
+
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+	<div class="footer-inner">
+
+		<div class="footer-brand">
+
+			<a class="footer-logo" href="">nado-gam</a>
+
+			<p class="footer-tagline">나도 감 — 가고 싶은 곳을 고르면<br>항공권·투어·호텔·크루즈를 한 번에.</p>
+
+			<details class="mobile-qr">
+
+				<summary>📱 휴대폰으로 보기</summary>
+
+				<img data-qr-self alt="이 화면을 휴대폰으로 여는 QR 코드" width="140" height="140">
+
+				<p>휴대폰 카메라로 스캔하면 같은 화면이 열려요.</p>
+
+			</details>
+
+		</div>
+
+		<nav class="footer-col" aria-label="여행 상품">
+
+			<h3>여행 상품</h3>
+
+			<ul>
+
+				<li><a href="travel">해외여행</a></li>
+
+				<li><a href="domestic">국내여행</a></li>
+
+				<li><a href="tour">투어</a></li>
+
+				<li><a href="special">이달의 특별전</a></li>
+
+				<li><a href="bestseller">베스트셀러</a></li>
+
+			</ul>
+
+		</nav>
+
+		<nav class="footer-col" aria-label="고객센터">
+
+			<h3>고객센터</h3>
+
+			<ul>
+
+				<li><a href="support">1:1 문의</a></li>
+
+				<li><a href="reservations">내 예약·QR</a></li>
+
+				<li><a href="cart">장바구니</a></li>
+
+				<li><a href="photo-credits">여행지 사진 출처</a></li>
+
+			</ul>
+
+			<p class="footer-hours">평일 09:00 ~ 18:00<br>(점심 12:00 ~ 13:00, 주말·공휴일 휴무)</p>
+
+		</nav>
+
+		<nav class="footer-col" aria-label="회사 정보">
+
+			<h3>나도 감</h3>
+
+			<ul>
+
+				<li><a href="about">서비스 소개</a></li>
+
+				<li><a href="terms">이용약관</a></li>
+
+				<li><a class="footer-strong" href="privacy">개인정보처리방침</a></li>
+
+			</ul>
+
+		</nav>
+
+	</div>
+
+	<div class="footer-info">
+
+		<p>
+
+			<span>상호 (주)나도감 <em>(예시)</em></span>
+
+			<span>대표 홍길동 <em>(예시)</em></span>
+
+			<span>사업자등록번호 000-00-00000 <em>(예시)</em></span>
+
+			<span>통신판매업신고 제0000-서울○○-0000호 <em>(예시)</em></span>
+
+		</p>
+
+		<p>
+
+			<span>관광사업등록 제0000-000호 <em>(예시)</em></span>
+
+			<span>주소 서울특별시 ○○구 ○○로 123 <em>(예시)</em></span>
+
+			<span>이메일 support@nadogam.example</span>
+
+		</p>
+
+	</div>
+
+	<p class="footer-notice">나도 감은 포트폴리오용 가상 서비스입니다. 화면의 항공편·편명·호텔·투어·가격과 위 사업자 정보는 실제와 무관한 예시이며, 결제는 모의로만 처리되어 실제 요금이 청구되지 않습니다.</p>
+
+	<div class="footer-bottom">
+
+		<span>© 2026 nado-gam. All rights reserved.</span>
+
+		<a href="#" class="footer-top" aria-label="맨 위로 이동">맨 위로 ↑</a>
+
+	</div>
+
+	<!-- 기획전·베스트셀러 사이드바: 해당 페이지가 아닐 때 common.js 가 채워서 항상 띄워 둔다(스크롤해도 따라온다). -->
+
+	<aside class="side-promo" id="side-promo" data-side-promo aria-label="이달의 기획전과 베스트셀러" hidden>
+
+		<div class="side-promo-head"><strong>이달의 기획전·베스트</strong></div>
+
+		<div class="side-promo-list" data-side-list></div>
+
+	</aside>
+
+	<!-- 휴대폰 폭에서만 보이는 하단 탭 바. 현재 메뉴 표시는 common.js 가 주소를 보고 정한다. -->
+
+	<nav class="tabbar" aria-label="모바일 메뉴">
+
+		<a href="" data-tab="/" data-tab-exact>
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+
+			<span>홈</span>
+
+		</a>
+
+		<a href="travel" data-tab="/travel">
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+
+			<span>여행</span>
+
+		</a>
+
+		<a href="domestic" data-tab="/domestic">
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l2-4M15 21l-2-4"/><circle cx="9" cy="14" r=".6"/><circle cx="15" cy="14" r=".6"/></svg>
+
+			<span>국내</span>
+
+		</a>
+
+		<a href="special" data-tab="/special">
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>
+
+			<span>특별전</span>
+
+		</a>
+
+		<a href="tour" data-tab="/tour">
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.6"/></svg>
+
+			<span>투어</span>
+
+		</a>
+
+		<a href="support" data-tab="/support">
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+
+			<span>문의</span>
+
+		</a>
+
+		<a href="account" data-tab="/account">
+
+			<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+
+			<span>내 정보</span>
+
+		</a>
+
+	</nav>
+
+</footer>
+
+
+
+<div class="popup" id="event-popup" hidden
+
+	role="dialog" aria-modal="true" aria-labelledby="popup-title" data-popup-id="1">
+
+	<div class="popup-backdrop" data-popup-close></div>
+
+	<div class="popup-card">
+
+		<button type="button" class="popup-x" data-popup-close aria-label="팝업 닫기">&times;</button>
+
+		<svg class="mascot mascot--popup" viewBox="0 0 260 170" role="img" aria-label="코뿔소 거코가 붉은 프로펠러 비행기를 타고 날아가는 모습">
+
+	<g class="mascot-lift">
+
+		<g transform="rotate(-7 130 90)">
+
+
+
+			<!-- 먼 쪽 날개(동체 뒤) -->
+
+			<path d="M108 66 L168 66 L150 40 L100 42 Z" fill="#a9231d"/>
+
+			<path d="M100 42 L150 40 L152 44 L103 46 Z" fill="#f3e3c3"/>
+
+
+
+			<!-- 꼬리날개: 수직·수평 -->
+
+			<path d="M40 68 L20 34 L50 38 L66 66 Z" fill="#b92a22"/>
+
+			<path d="M24 38 L44 40" stroke="#ff8a1f" stroke-width="4" stroke-linecap="round"/>
+
+			<path d="M46 80 L10 94 L26 100 L64 86 Z" fill="#a9231d"/>
+
+
+
+			<!-- 동체 -->
+
+			<path d="M34 68 Q62 62 112 63 L180 68 Q208 72 210 88 Q208 104 180 108 L112 106 Q62 102 34 84 Z" fill="#d7332b"/>
+
+			<path d="M40 86 Q70 98 112 100 L180 102 Q200 100 206 94 Q198 106 180 108 L112 106 Q62 102 34 84 Z" fill="#a9231d" opacity="0.55"/>
+
+			<!-- 오렌지 줄무늬 -->
+
+			<path d="M52 78 Q90 74 124 76 L176 80" fill="none" stroke="#ff8a1f" stroke-width="5" stroke-linecap="round"/>
+
+
+
+			<!-- 조종석과 거코 -->
+
+			<ellipse cx="140" cy="64" rx="26" ry="7" fill="#3a1411"/>
+
+			<g class="mascot-rider">
+
+				<!-- 몸통과 앞발(조종간을 잡는다) -->
+
+				<path d="M120 68 Q122 48 142 46 Q158 46 160 68 Z" fill="#98a3bb"/>
+
+				<ellipse cx="140" cy="62" rx="14" ry="9" fill="#b4bdd1"/>
+
+				<path d="M156 62 Q166 66 168 74" fill="none" stroke="#7f8aa3" stroke-width="8" stroke-linecap="round"/>
+
+				<circle cx="169" cy="75" r="4.4" fill="#98a3bb"/>
+
+				<path d="M170 76 L174 86" stroke="#3a1411" stroke-width="3" stroke-linecap="round"/>
+
+
+
+				<!-- 스카프: 바람에 펄럭인다 -->
+
+				<g class="mascot-scarf">
+
+					<path d="M128 52 Q112 50 98 58 Q88 62 76 58 Q88 70 102 68 Q116 66 130 60 Z" fill="#f3e3c3"/>
+
+					<path d="M100 60 Q90 62 80 59" fill="none" stroke="#ff8a1f" stroke-width="2.2" stroke-linecap="round"/>
+
+				</g>
+
+
+
+				<!-- 머리: 45도 옆모습, 오른쪽을 본다 -->
+
+				<ellipse cx="146" cy="30" rx="8" ry="11" fill="#7f8aa3" transform="rotate(-18 146 30)"/>
+
+				<ellipse cx="146" cy="31" rx="4" ry="7" fill="#ffb0a0" opacity="0.8" transform="rotate(-18 146 31)"/>
+
+				<ellipse cx="158" cy="44" rx="22" ry="17" fill="#98a3bb"/>
+
+				<ellipse cx="180" cy="52" rx="17" ry="12" fill="#b4bdd1"/>
+
+				<circle cx="190" cy="54" r="2.6" fill="#59647c"/>
+
+				<path d="M175 60 Q184 63 192 59" fill="none" stroke="#59647c" stroke-width="1.8" stroke-linecap="round"/>
+
+				<!-- 뿔 두 개 -->
+
+				<path d="M184 44 Q194 24 204 22 Q202 38 194 49 Z" fill="#f6e7c4"/>
+
+				<path d="M176 42 Q180 31 186 29 Q185 38 182 45 Z" fill="#e8d4a2"/>
+
+				<!-- 가죽 모자와 고글 -->
+
+				<path d="M138 42 Q140 22 162 24 Q172 26 172 36 L150 42 Z" fill="#7a4a2a"/>
+
+				<path d="M140 40 L172 38" stroke="#4a2a14" stroke-width="2.4" stroke-linecap="round"/>
+
+				<circle cx="168" cy="40" r="7" fill="#3a1411"/>
+
+				<circle cx="168" cy="40" r="4.6" fill="#bfe6ff"/>
+
+				<circle cx="166.6" cy="38.6" r="1.4" fill="#fff"/>
+
+				<path d="M161 40 L142 44" stroke="#3a1411" stroke-width="2.6" stroke-linecap="round"/>
+
+				<circle cx="164" cy="52" r="3.8" fill="#ff9fb0" opacity="0.6"/>
+
+			</g>
+
+
+
+			<!-- 앞 유리 -->
+
+			<path d="M166 63 L176 52 L180 66 Z" fill="#bfe6ff" opacity="0.55"/>
+
+
+
+			<!-- 가까운 쪽 날개(동체 앞으로 나온다) -->
+
+			<path d="M96 92 L166 96 L186 136 L88 130 Z" fill="#d7332b"/>
+
+			<path d="M88 130 L186 136 L184 130 L92 124 Z" fill="#f3e3c3"/>
+
+			<path d="M96 92 L166 96 L168 100 L98 96 Z" fill="#a9231d"/>
+
+			<path d="M118 96 L112 128 M150 98 L156 132" stroke="#a9231d" stroke-width="2" opacity="0.6"/>
+
+
+
+			<!-- 엔진 덮개, 프로펠러 -->
+
+			<ellipse cx="208" cy="88" rx="8" ry="18" fill="#8f1f1a"/>
+
+			<ellipse class="mascot-prop-disc" cx="216" cy="88" rx="5" ry="36" fill="#fff" opacity="0.22"/>
+
+			<g class="mascot-prop">
+
+				<path d="M216 88 L213 52 Q216 50 219 52 Z" fill="#3a1411"/>
+
+				<path d="M216 88 L213 124 Q216 126 219 124 Z" fill="#3a1411"/>
+
+			</g>
+
+			<ellipse cx="216" cy="88" rx="4.5" ry="5.5" fill="#ff8a1f"/>
+
+		</g>
+
+
+
+		<!-- 속도선 -->
+
+		<g class="mascot-wind" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.5">
+
+			<path d="M4 58 L30 58 M0 112 L36 112 M14 132 L44 132"/>
+
+		</g>
+
+	</g>
+
+</svg>
+
+		<p class="kicker">EVENT</p>
+
+		<h2 id="popup-title">나도 감 오픈 기념, 거코가 쏜다!</h2>
+
+		<p class="popup-body">이번 달, 이달의 특별전 3곳을 특가로 만나 보세요. 프로펠러 비행기처럼 쌩 날아오는 할인을 놓치지 마세요.</p>
+
+		<img class="popup-qr" src="qr?target=/special" alt="이벤트 QR 코드" width="120" height="120">
+
+		<a class="button" href="special" data-popup-close-on-click>이벤트 보러 가기</a>
+
+		<div class="popup-actions">
+
+			<button type="button" class="popup-link" data-popup-hide-today>오늘 하루 안 보기</button>
+
+			<button type="button" class="popup-link" data-popup-close>닫기</button>
+
+		</div>
+
+	</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2/dist/globe.gl.min.js"></script>
+
+<script src="js/world-cities.js"></script>
+
+<script src="js/globe-utils.js"></script>
+
+<script src="js/carousel.js"></script>
+
+<script src="js/home-globe.js"></script>
+
+<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(a&&!a.getAttribute("href").startsWith("#")){e.preventDefault();e.stopPropagation()}},true);</script>
+</body>
+
+</html>
+

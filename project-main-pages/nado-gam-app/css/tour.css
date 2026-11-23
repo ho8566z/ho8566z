@@ -1,0 +1,195 @@
+/* 투어 목록·상세 */
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.chip--tab { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-weight: 700; font-size: 14px; background: var(--panel); }
+.chip--tab:hover { color: var(--ink); }
+.chip--tab.is-active { color: var(--ink); border-color: var(--accent); background: rgba(255, 90, 54, 0.16); }
+.chip--tab b { margin-left: 6px; font-size: 12px; color: var(--accent-ink); }
+.tour-filters { max-width: 1160px; margin: 8px auto 0; padding: 0 clamp(16px, 4vw, 32px); }
+.tour-search { margin-top: 8px; }
+
+.tour-grid { max-width: 1160px; margin: 8px auto 0; padding: 0 clamp(16px, 4vw, 32px); display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+.tour-card {
+	position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 250px; padding: 18px;
+	border-radius: 24px; color: #fff; overflow: hidden;
+	background: var(--photo, linear-gradient(transparent, transparent)) center / cover no-repeat, linear-gradient(145deg, var(--from, #f76707), var(--to, #862e9c));
+	box-shadow: 0 12px 28px -12px var(--shadow-soft); transition: transform 0.3s var(--ease), box-shadow 0.3s;
+}
+.tour-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.45)); pointer-events: none; }
+.tour-card > * { position: relative; z-index: 1; }
+.tour-card:hover, .tour-card:focus-visible { transform: translateY(-4px); box-shadow: 0 18px 36px -14px var(--shadow-soft); }
+.tour-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.tour-badge { padding: 4px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.32); font-size: 12px; font-weight: 800; }
+.tour-badge--theme { background: rgba(255, 255, 255, 0.92); color: #1b2236; }
+.tour-place { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; }
+.tour-place strong { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+.tour-place small { opacity: 0.85; }
+.tour-title { font-size: 17px; font-weight: 800; line-height: 1.35; }
+.tour-sub { font-size: 13px; opacity: 0.9; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tour-foot { margin-top: auto; display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+.tour-brand { font-weight: 700; color: #ffe8c8; }
+.tour-meta b { font-size: 17px; }
+
+.tour-hero {
+	max-width: 1160px; margin: 16px auto 0; padding: 28px clamp(18px, 4vw, 40px); border-radius: var(--radius); color: #fff;
+	background: var(--photo, linear-gradient(transparent, transparent)) center / cover no-repeat, linear-gradient(145deg, var(--from, #f76707), var(--to, #862e9c)); box-shadow: 0 18px 40px -18px var(--shadow-soft);
+}
+.tour-hero[style*="--photo"] { position: relative; isolation: isolate; }
+.tour-hero[style*="--photo"]::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: linear-gradient(0deg, rgba(8, 12, 24, 0.82), rgba(8, 12, 24, 0.3) 70%, rgba(8, 12, 24, 0.1)); }
+.tour-card[style*="--photo"]::after { background: linear-gradient(180deg, rgba(8, 12, 24, 0.3) 0%, rgba(8, 12, 24, 0.5) 40%, rgba(8, 12, 24, 0.9) 100%); }
+.credit-table td, .credit-table th { white-space: normal; }
+.credit-table td:first-child, .credit-table td:last-child, .credit-table th:first-child, .credit-table th:last-child { white-space: nowrap; }
+.tour-hero h1 { margin: 6px 0 4px; font-size: clamp(26px, 4.5vw, 42px); font-weight: 800; letter-spacing: -0.02em; }
+.tour-hero-sub { max-width: 720px; opacity: 0.92; line-height: 1.6; }
+.tour-place-lg { margin: 14px 0 0; display: flex; align-items: baseline; gap: 8px; }
+.tour-place-lg strong { font-size: 20px; }
+.back-link { display: inline-block; margin-bottom: 12px; font-weight: 700; opacity: 0.9; }
+
+.tour-layout { max-width: 1160px; margin: 24px auto 0; padding: 0 clamp(16px, 4vw, 32px); display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 320px; align-items: start; }
+.tour-main section { margin-bottom: 28px; }
+.tour-points { margin: 8px 0 0; padding-left: 20px; line-height: 1.8; }
+.tour-days { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 12px; }
+.tour-days li { display: grid; grid-template-columns: 70px 1fr; gap: 14px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; }
+.day-no { align-self: start; padding: 4px 0; text-align: center; border-radius: 999px; background: rgba(255, 90, 54, 0.18); color: var(--accent-ink); font-weight: 800; font-size: 13px; }
+.tour-days p { margin: 4px 0 0; color: var(--muted); line-height: 1.6; }
+.tour-incl { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
+.check-list { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.check-list li { padding-left: 22px; position: relative; line-height: 1.5; }
+.check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-ink); font-weight: 800; }
+.check-list--no li::before { content: "✕"; color: var(--hot); }
+.tour-side { position: sticky; top: 84px; padding: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 24px; }
+.tour-price { margin: 4px 0 2px; font-size: 34px; font-weight: 800; color: var(--accent-ink); }
+.tour-price-sub { color: var(--muted); margin: 0 0 12px; }
+.tour-side .button { display: block; width: 100%; text-align: center; margin-top: 10px; }
+
+@media (max-width: 900px) { .tour-layout { grid-template-columns: 1fr; } .tour-side { position: static; } }
+@media (max-width: 760px) { .tour-incl { grid-template-columns: 1fr; } .tour-days li { grid-template-columns: 1fr; gap: 6px; } .day-no { justify-self: start; padding: 4px 12px; } }
+
+/* 국내여행: 이동편 목록 */
+.domestic-section { max-width: 1160px; margin: 24px auto 0; padding: 0 clamp(16px, 4vw, 32px); }
+.domestic-section h2 { margin: 0 0 10px; font-size: 20px; }
+.tour-grid--inline { padding: 0; margin-top: 8px; }
+.transport-list { list-style: none; margin: 12px 0 8px; padding: 0; display: grid; gap: 10px; }
+.transport { display: grid; grid-template-columns: 84px minmax(0, 1fr) auto auto; gap: 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.transport-mode { text-align: center; padding: 6px 0; border-radius: 999px; font-size: 13px; font-weight: 800; background: rgba(255, 90, 54, 0.16); color: var(--accent-ink); }
+.transport-mode[data-mode="FLIGHT"] { background: rgba(28, 126, 214, 0.12); color: #1c7ed6; }
+.transport-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.transport-main small { color: var(--muted); }
+.transport-time { color: var(--muted); font-size: 14px; }
+.transport-time b { color: var(--ink); }
+.transport-fare { font-weight: 800; font-size: 17px; }
+@media (max-width: 760px) {
+	.transport { grid-template-columns: 72px minmax(0, 1fr); }
+	.transport-time, .transport-fare { grid-column: 2; }
+}
+
+/* 호텔·크루즈 */
+.stay-wrap { max-width: 1160px; margin: 20px auto 0; padding: 0 clamp(16px, 4vw, 32px); }
+.stay-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px auto 0; max-width: 1160px; padding: 0 clamp(16px, 4vw, 32px); }
+.stay-wrap .stay-tabs { padding: 0; margin: 0 0 12px; }
+.nights-form { margin: 8px 0 12px; }
+.nights-form select { margin-left: 8px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: inherit; }
+.hotel-list { display: grid; gap: 12px; margin-top: 12px; }
+.hotel-card { display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.hotel-title strong { font-size: 18px; }
+.hotel-grade { color: var(--accent-ink); letter-spacing: 1px; margin-left: 6px; }
+.hotel-area { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.hotel-summary { margin: 6px 0 0; line-height: 1.6; }
+.hotel-amenity { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.hotel-price { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 2px; text-align: right; }
+.hotel-price b { font-size: 16px; }
+.hotel-price strong { font-size: 22px; color: var(--accent-ink); }
+.cruise-card { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.cruise-card h2 { margin: 0 0 6px; }
+.cruise-meta { margin: 0; color: var(--muted); }
+.cruise-route { margin: 12px 0 0; font-weight: 700; line-height: 1.6; }
+.cruise-prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+.cruise-prices div { display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 12px; background: var(--panel-2); }
+.cruise-prices strong { font-size: 22px; color: var(--accent-ink); }
+@media (max-width: 760px) {
+	.hotel-card { grid-template-columns: 1fr; }
+	.hotel-price { align-items: flex-start; text-align: left; }
+}
+
+/* 장바구니·예약 */
+.cart-form { display: grid; gap: 10px; margin-top: 16px; }
+.cart-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 700; }
+.cart-form input, .cart-form select { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: inherit; }
+.cart-form .button { margin-top: 4px; border: 0; cursor: pointer; text-align: center; }
+.cart-form--inline { grid-template-columns: 1fr 70px auto; align-items: end; margin-top: 8px; text-align: left; }
+.cruise-form { max-width: 520px; }
+.cart-list { list-style: none; margin: 16px 0; padding: 0; display: grid; gap: 12px; }
+.cart-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.cart-main { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0; }
+.cart-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.cart-side strong { font-size: 20px; color: var(--accent-ink); }
+.cart-pay { margin-top: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.cart-pay fieldset { border: 0; padding: 0; margin: 12px 0; display: flex; gap: 16px; flex-wrap: wrap; }
+.cart-pay legend { color: var(--muted); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.cart-total { margin: 0; font-size: 18px; }
+.cart-total strong { font-size: 28px; color: var(--accent-ink); margin-left: 8px; }
+.cart-pay .button { border: 0; cursor: pointer; }
+.cart-links { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 760px) {
+	.cart-item { grid-template-columns: 1fr; }
+	.cart-side { align-items: flex-start; }
+	.cart-form--inline { grid-template-columns: 1fr 70px; }
+}
+
+/* QR 코드 */
+.qr-box { display: flex; gap: 18px; align-items: center; margin: 20px 0; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.qr-box img, .popup-qr, .mobile-qr img { background: #fff; border-radius: 10px; padding: 6px; }
+.qr-box p { margin: 6px 0 10px; }
+.popup-qr { display: block; margin: 10px auto 0; }
+.mobile-qr { margin-bottom: 12px; }
+.mobile-qr summary { cursor: pointer; font-weight: 700; }
+.mobile-qr img { display: block; margin: 10px 0 6px; }
+.mobile-qr p { margin: 0; font-size: 13px; }
+.checkin-form { display: flex; gap: 8px; margin: 12px 0; max-width: 520px; }
+.checkin-form input { flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: inherit; }
+.checkin-result { margin-top: 16px; }
+.ticket-status { display: inline-block; margin: 8px 0; padding: 8px 18px; border-radius: 999px; background: rgba(47, 61, 255, 0.1); color: var(--accent-2); font-weight: 800; }
+.ticket-status--done { background: rgba(43, 138, 62, 0.14); color: var(--ok); }
+@media (max-width: 760px) {
+	.mobile-qr { display: none; }
+	.qr-box { flex-direction: column; align-items: flex-start; }
+}
+
+.transport .cart-form--transport { grid-column: 1 / -1; grid-template-columns: 1fr 90px auto; align-items: end; margin-top: 0; text-align: left; }
+.cart-form--flight { grid-template-columns: 2fr 1.4fr 90px auto; align-items: end; margin-top: 18px; }
+@media (max-width: 760px) { .cart-form--flight { grid-template-columns: 1fr 1fr; } .cart-form--flight .button { grid-column: 1 / -1; } }
+
+/* 해외 투어 상단의 인천 출발 노선 */
+.tour-route { max-width: 560px; margin: 16px 0 0; }
+.tour-route .point strong { font-size: clamp(20px, 3vw, 26px); }
+.tour-route .point span, .tour-route .route-line { color: rgba(255, 255, 255, 0.85); }
+.tour-route .route-line i { background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0 8px, transparent 8px 14px); }
+.tour-route .route-line i::after { color: #fff; }
+
+/* ---------- 투어 카드 반분할: 왼쪽은 여행지 전경, 오른쪽은 테마 사진(음식·경기장·명소), 사선 경계 ----------
+   카드를 위로 띄우지 않는다(커서가 가장자리에 있을 때 들썩이지 않게). 글자는 아래쪽 어두운 띠 위에 둔다. */
+.tour-card:hover, .tour-card:focus-visible { transform: none; box-shadow: 0 22px 44px -16px var(--shadow-soft); }
+.tour-card--split { min-height: 330px; }
+/* 왼쪽 절반(여행지 전경)과 오른쪽 절반(테마 사진)은 각자 자기 상자 안에서 가운데 맞춤으로 채워, 두 사진의 중심이 각 절반의 중심에 오게 한다 */
+.tour-card--split { background: linear-gradient(145deg, var(--from, #f76707), var(--to, #862e9c)); }
+.tour-card > .tour-half { position: absolute; z-index: 0; pointer-events: none; }
+.tour-half--l { top: 0; bottom: 0; left: 0; width: 54%;
+	background: var(--photo, linear-gradient(transparent, transparent)) 50% 50% / cover no-repeat;
+	clip-path: polygon(0 0, 100% 0, 74% 100%, 0 100%); }
+.tour-half--r { top: 0; right: 0; left: 40%; height: 58%;
+	background: var(--theme-photo) 50% 50% / cover no-repeat;
+	clip-path: polygon(23% 0, 100% 0, 100% 100%, 0 100%);
+	-webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent);
+	transition: clip-path 0.5s var(--ease); }
+.tour-card--split:hover .tour-half--r, .tour-card--split:focus-visible .tour-half--r { clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%); }
+.tour-card--split[style*="--photo"]::after, .tour-card--split::after {
+	background: linear-gradient(180deg, rgba(8, 12, 24, 0.03) 0%, rgba(8, 12, 24, 0.08) 26%, rgba(8, 12, 24, 0.8) 50%, rgba(8, 12, 24, 0.95) 100%);
+}
+.tour-card--split .tour-place { margin-top: 104px; }
+.tour-card--split .tour-title, .tour-card--split .tour-place strong { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55); }
+.tour-theme-chip { position: absolute !important; top: 16px; right: 16px; z-index: 2; padding: 4px 11px; border-radius: 999px;
+	background: rgba(255, 255, 255, 0.92); color: #1b2236; font-size: 12px; font-weight: 800; box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.35); }
+.tour-card--split .tour-badges { position: relative; z-index: 2; }
+
+/* 투어 정렬 시 카드에 보여 주는 조회·판매·추천 순위 */
+.tour-card .tour-stat { position: absolute; left: 18px; top: 52px; z-index: 3; padding: 2px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: #1b2236; font-size: 12px; font-weight: 800; }
+.tour-card .tour-stat[hidden] { display: none; }

@@ -1,0 +1,41 @@
+/* 마스코트 거코: 붉은 프로펠러 비행기를 탄 코뿔소 */
+.mascot { display: block; width: 220px; height: auto; overflow: visible; }
+.mascot--sm { width: 120px; margin: 0 auto 8px; }
+.mascot--lg { width: min(340px, 80vw); }
+
+/* 움직임
+   - mascot-lift : 비행기가 바람을 타고 위아래로 출렁인다
+   - mascot-prop : 프로펠러 날개가 휙휙 돈다(원판은 깜빡여 빠르게 도는 느낌)
+   - mascot-scarf: 스카프가 바람에 펄럭인다
+   - mascot-wind : 속도선이 흐른다 */
+.mascot-lift { animation: lift 1.6s ease-in-out infinite alternate; }
+@keyframes lift { from { transform: translateY(3px) rotate(0.6deg); } to { transform: translateY(-5px) rotate(-0.8deg); } }
+
+.mascot-prop { transform-box: fill-box; transform-origin: center; animation: prop 0.14s linear infinite alternate; }
+@keyframes prop { from { transform: scaleY(1); } to { transform: scaleY(0.25); } }
+.mascot-prop-disc { animation: disc 0.14s linear infinite alternate; }
+@keyframes disc { from { opacity: 0.14; } to { opacity: 0.3; } }
+
+.mascot-scarf { transform-box: fill-box; transform-origin: 100% 50%; animation: scarf 0.5s ease-in-out infinite alternate; }
+@keyframes scarf { from { transform: rotate(-5deg) scaleX(1); } to { transform: rotate(6deg) scaleX(1.1); } }
+
+.mascot-wind { animation: wind 0.9s linear infinite; }
+@keyframes wind { from { transform: translateX(8px); opacity: 0.15; } 50% { opacity: 0.55; } to { transform: translateX(-10px); opacity: 0.1; } }
+
+@media (prefers-reduced-motion: reduce) {
+	.mascot-lift, .mascot-prop, .mascot-prop-disc, .mascot-scarf, .mascot-wind { animation: none; }
+}
+
+.empty--mascot { padding: 32px 0; }
+.empty--mascot p { margin: 0; }
+
+/* 404·오류 화면 */
+.lost { text-align: center; padding: 72px 0 40px; }
+.lost .mascot { margin: 0 auto 12px; }
+.lost h1 { font-size: clamp(30px, 6vw, 48px); font-weight: 800; margin: 4px 0 8px; }
+.lost p { color: var(--muted); }
+
+/* 마스코트 이름 '거코' 글자는 오렌지색 */
+.name-geoko { color: var(--accent-ink); font-weight: 800; }
+/* 컬러 그라데이션 배경 위에서는 글자가 묻히지 않게 어두운 그림자를 더한다 */
+.tour-hero .name-geoko, .detail-hero .name-geoko, .poster .name-geoko { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65), 0 0 8px rgba(0, 0, 0, 0.35); }
